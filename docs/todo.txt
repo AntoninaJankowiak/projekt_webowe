@@ -1,28 +1,56 @@
 SPECIFIC GENERATION only used if evolvement type differes
 friendship, gens 1-7 220, gens 8-9 - 160
-2 requirements for one row means both are needed, different rows means alternative
+2 requirements for one row means both are needed, different rows is alternative
 
 add "magnetic field" to locations or whatever the table name is 
 
 25-> 26 thunder stone
 30 -> 31, 33 -> 34, 35 -> 36, 39 -> 40 moon sone
 37 -> 38 58->59 fire stone
-
 44-> 45 leaf stone AND 44 - > 182 sun stone
-61 62, 90 91 water stone
-61 186 and 79 199 holding kings rock
-95 208 holding metal coat
-***440 113 both holding oval stone and daytime!***
+61 62, 90 91, 120 121 water stone
 70 71, 102 103 leafstone
+
+
 
 82 462 thunder stone gen 8, 9 that's why 2 times
 82 462 magnetic field
 
+
 tyrogue evolutions in "other"
 
+
 108 463 Rollout learnt
+114 463 ancient power learnt
+439 122 Mimic learnt
 
 
+61 186 and 79 199 holding kings rock
+95 208 holding metal coat
+***440 113 both holding oval stone and daytime!***
+117 230 holding dragon scale
+123 212 trade holding metal coat
+125 466 trade holding electrizer
+126 467 trade holding magmazer
+123 900 use black augurite
+
+137 223 trade holding upgrade
+233 474 trade holding dubious disc
+
+
+
+
+eevolutions
+133 134 water stone
+133 135 thunder stone
+133 136 fire stone
+133 196 high friendship AND day
+133 197 high friendship AND night
+133 470 leaf stone OR mossy rock - other
+133 471 ice stone OR icy rock - other
+133 700 fair type move learnt -> baby doll eyes or charm, 2 entries, 
+or 2 hearts affection gen 6 7
+or high friendship 8 9
 
 
 
