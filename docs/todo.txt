@@ -52,5 +52,6 @@ eevolutions
 or 2 hearts affection gen 6 7
 or high friendship 8 9
 
-
+this might not make sense but infinite would cause errors so instead of infinite,
+moves can have 200 accuracy so -x won't do anything
 
