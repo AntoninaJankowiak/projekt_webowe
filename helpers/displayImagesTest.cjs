@@ -4,7 +4,7 @@ const sqlite3 = require('sqlite3').verbose()
 const app = express()
 const port = 3000
 
-const db = new sqlite3.Database('../database/pokemon')
+const db = new sqlite3.Database('../pokewiki/database/pokemon')
 
 app.get('/image1/:pokemonId', (req, res) => {
     const pokemonId = req.params.pokemonId
