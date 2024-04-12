@@ -1,4 +1,4 @@
-SPECIFIC GENERATION only used if evolvement type differes
+SPECIFIC GENERATION only used if evolvement type differess
 friendship, gens 1-7 220, gens 8-9 - 160
 2 requirements for one row means both are needed, different rows is alternative
 

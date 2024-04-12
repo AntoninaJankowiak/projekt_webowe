@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import Clicker from './pages/Clicker';
 //import Contact from './pages/Contact';
 import Home from './pages/Home';
+import React from "react";
 
 const routes = [
     { path: '/', element: <Home /> }//,
@@ -17,7 +18,6 @@ export default function App() {
     return (
         <Router>
             <div>
-
                 <Routes>
                     {routes.map(({ path, element }) => (
                         <Route key={path} path={path} element={element} />

@@ -1,0 +1,93 @@
+//mniejszy navbar w ktorym są dropdown menu
+#navbar{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #666;
+  height: 40px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  max-height: 300px;
+}
+
+//musi byc
+.hoverDropdown:hover .dropdown-menu {
+  display: block;
+}
+
+//szerokosc elementow dropdown menu chyba jednak nie
+.hoverDropdown{
+  min-width: 160px;
+}
+
+.hoverDropdown *{
+  min-width: 170px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+//kolor tekstu linków + usuniecie podkreslenia
+//nie zmieniac a na classe
+.hoverDropdown a{
+  text-decoration: none;
+  color: #eee;
+}
+
+//padding do dołu szarego paska nav, display none tych elementow
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  padding-bottom: 20px;
+}
+
+//a-> .link, li-> .text
+.dropdown-menu .link, .text {
+  display: flex;
+  width: 100px;
+  padding-left: 5px;
+  padding-right: 15px;
+  color: #bbb;
+}
+
+//kolor i wieksza czcionka linkow
+.dropdown-menu .link{
+  text-decoration: none;
+  background-color: #202020;
+  font-size: 110%;
+}
+
+//inny kolor i mniejsza czcionka normalnego tekstu
+.dropdown-menu .text{
+  font-size: 90%;
+  background-color: #3D3D3D;
+  text-transform: capitalize;
+  cursor: default;
+}
+
+//obojetnie ktory element jest pierwszy to ma dodatkowy padding
+.dropdown-menu > :first-child{
+  padding-top: 4px;
+}
+//-||- ostatni --||-
+.dropdown-menu > :last-child{
+  padding-bottom: 4px;
+}
+
+//zmiana koloru tła przy najechaniu ale tylko na linki
+.dropdown-menu .link:hover {
+  background-color: #404040;
+}
+
+
+.dropdown-menu {
+  flex-direction: column;
+}
+
+.dropMenuIcon{
+  width: 20px;
+  margin-right: 4px;
+}
+//TODO: zmienić nazwe class ligma na coś sensownego
+#navbar > .ligma{
+  display: flex;
+}

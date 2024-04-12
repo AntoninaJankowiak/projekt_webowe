@@ -1,9 +1,13 @@
 import React from 'react';
 import Header from '../../components/header/index.tsx'
+import Container from "../../components/Container";
+import NavBar from "../../components/navbar"
 
-const Home: React.FC = () => {
+export default function Home (){
     return (
-        <Header></Header>
+       <Container>
+           <Header></Header>
+           <NavBar></NavBar>
+       </Container>
     )
 }
-export default Home
