@@ -3,4 +3,5 @@ body {
   justify-items: center;
   width: 100%;
   min-height: 100vh;
+  overflow: scroll;
 }

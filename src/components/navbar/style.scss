@@ -1,13 +1,27 @@
+html, body {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+body{
+  min-width: 100%;
+  background-color: #727272;
+  background-image: repeating-linear-gradient(45deg, #6a6a6a 0, #6a6a6a 2px, #727272 2px, #727272 11px);
+  background-size: 16px 16px;
+}
+
 //mniejszy navbar w ktorym są dropdown menu
 #navbar{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-evenly; //chyba teraz nic nie zmienia
   align-items: center;
-  background-color: #666;
+  background-color: #3B3B3B;
   height: 40px;
+  max-height: 300px;
   flex-direction: row;
   flex-wrap: nowrap;
-  max-height: 300px;
+  width: 80%;
+  margin:auto;
+  border-radius: 5px;
 }
 
 //musi byc
@@ -17,7 +31,10 @@
 
 //szerokosc elementow dropdown menu chyba jednak nie
 .hoverDropdown{
-  min-width: 160px;
+  margin-top:25px;
+  height: 100%;
+  width: 100%;
+  //min-width: 160px; //to mi psuło kod
 }
 
 .hoverDropdown *{
@@ -38,6 +55,7 @@
   display: none;
   position: absolute;
   padding-bottom: 20px;
+  margin-left:-31px; //ikonka ma 25px+6px
 }
 
 //a-> .link, li-> .text
@@ -78,16 +96,49 @@
   background-color: #404040;
 }
 
-
 .dropdown-menu {
   flex-direction: column;
 }
 
 .dropMenuIcon{
-  width: 20px;
+  min-width: 20px;
+  height: 20px;
   margin-right: 4px;
+  margin-left: 2px;
 }
-//TODO: zmienić nazwe class ligma na coś sensownego
+
+//TODO: zmienić ligma na coś sensownego
 #navbar > .ligma{
   display: flex;
+  height: 40px;
+  align-items: center;
+  //width: auto;
+  width: 16.666%;
+  min-width: fit-content;
+}
+
+#navbar > .ligma:hover{
+  background-color: #555;
+  height: 40px;
+}
+
+
+#searchbar{
+  width: 100%;
+}
+
+//TODO: stylowanie mobilne
+@media (max-width: 430px){
+  .dropdown-menu .link, .dropdown-menu .text{
+    width: 100%;
+  }
+  #navbar{
+    width: 100%;
+  }
+  .navbar{
+    width: 100%;
+  }
+  //#navbar > .ligma{
+    //flex-direction: column;
+  //}
 }
