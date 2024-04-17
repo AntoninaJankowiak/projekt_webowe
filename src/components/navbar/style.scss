@@ -12,18 +12,29 @@ body{
 //mniejszy navbar w ktorym są dropdown menu
 #navbar{
   display: flex;
-  justify-content: space-evenly; //chyba teraz nic nie zmienia
-  align-items: center;
-  background-color: #3B3B3B;
-  height: 40px;
-  max-height: 300px;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: 80%;
-  margin:auto;
-  border-radius: 5px;
+  align-items: center;
+  background-color: #3B3B3B;
+  height: 50px;
+  max-height: 400px;
+  width: 85%;
+  min-width: fit-content;
+  max-width: 1200px;
+  margin: auto;
+  border-radius: 8px;
+  font-weight: bolder;
 }
 
+#navbar:first-child{
+  padding-left: 20px;
+}
+#navbar:last-child{
+  padding-right: 15px;
+}
+
+
+//tutaj pelno do rozwijalnych menu*******************************************************************
 //musi byc
 .hoverDropdown:hover .dropdown-menu {
   display: block;
@@ -121,19 +132,41 @@ body{
   background-color: #555;
   height: 40px;
 }
-
+//********************************************koniec rozwijalnych menu*****************************
 
 #searchbar{
-  width: 100%;
+  border-radius: 5%;
+  color: #a6a6a6;
+  width: 16.666%;
 }
 
-//TODO: stylowanie mobilne
-@media (max-width: 430px){
+.searchField{
+  max-width: 150px;
+  background-color: #727272;
+  color: #AAA;
+  height: 20px;
+  border-radius: 5px;
+}
+.searchField::placeholder{
+  color: #AAA;
+}
+
+
+
+
+
+
+
+
+//TODO: stylowanie mobilne inne do 900 px i 620px
+@media (max-width: 1100px){
   .dropdown-menu .link, .dropdown-menu .text{
     width: 100%;
   }
   #navbar{
     width: 100%;
+    //font-size: 80%;
+    font-weight: normal;
   }
   .navbar{
     width: 100%;
@@ -141,4 +174,10 @@ body{
   //#navbar > .ligma{
     //flex-direction: column;
   //}
+}
+
+@media (max-width: 500px) {
+  #navbar{
+    font-weight: bolder;
+  }
 }

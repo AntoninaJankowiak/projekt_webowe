@@ -2,6 +2,12 @@ body {
   margin: 0 auto;
   justify-items: center;
   width: 100%;
-  min-height: 100vh;
   overflow: scroll;
+}
+.main{
+  max-width: 1200px;
+  margin: 0 auto;
+  height: fit-content;
+  min-height: 1200px;
+  padding-left: 15px;
 }

@@ -6,10 +6,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import Contact from './pages/Contact';
 import Home from './pages/Home';
 import React from "react";
+import Pokedex from "./pages/Pokedex"
 
 const routes = [
-    { path: '/', element: <Home /> }//,
-    //{ path: '/aboutus', element: <AboutUs /> },
+    { path: '/', element: <Home /> },
+    { path: '/pokedex', element: <Pokedex /> },
     //{ path: '/clicker', element: <Clicker /> },
     //{ path: '/contact', element: <Contact /> }
 ];

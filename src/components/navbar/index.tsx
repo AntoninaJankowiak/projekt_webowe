@@ -22,7 +22,7 @@ export default function NavBar() {
     }, [])
 
     const handleTitle = (title,shortTitle) =>{
-        return windowWidth < 670 ? shortTitle : title
+        return windowWidth < 920 ? shortTitle : title
     }
 
     const menuItems = [
@@ -40,7 +40,7 @@ export default function NavBar() {
                 {text: "Pokemon locations", href: "/location", type:"link" },
                 {text: "Sprite gallery", href: "/sprites", type:"link" },
                 {text: "Quick links", href:"#", type:"text"} ,
-                {text: "National pokedex", href: "/pokedex/national", type:"link" }
+                {text: "National pokedex", href: "/pokedex/national", type:"link"}
             ]
 
         },
@@ -49,16 +49,14 @@ export default function NavBar() {
             title: "Game mechanics",
             shortTitle: "Mechanics",
             items: [
-                {text: "Breeding & egg groups", href: '#', type:"link"},
-                {text: "Move tutors", href: '#', type:"link"},
-                {text: "Dual type charts", href: '#', type:"link"},
-                {text: "Effort values (EVs)", href: '#', type:"link"},
-                {text: "Natures", href: '#', type:"link"},
-                {text: "IVs/Personality", href: '#', type:"link"},
+                {text: "Breeding & egg groups", href: '/mechanics/breeding', type:"link"},
+                {text: "Move tutors", href: '/mechanics/move-tutors', type:"link"},
+                {text: "Effort values (EVs)", href: '/mechanics/ev', type:"link"},
+                {text: "Natures", href: '/mechanics/natures', type:"link"},
+                {text: "IVs/Personality", href: '/mechanics/ivs', type:"link"},
                 {text: "Useful tools", href:"#", type:"text"} ,
-                {text: "Moveset searcher", href: '#', type:"link"},
-                {text: "Type coverage calculator", href: '#', type:"link"},
-                {text: "Text list generator", href: '#', type:"link"}
+                {text: "Moveset searcher", href: '/tools/moveset-search', type:"link"},
+                {text: "Type coverage calculator", href: '/tools/type-coverage', type:"link"}
             ]
         },
         {
@@ -66,16 +64,16 @@ export default function NavBar() {
             title: "Pokemon games",
             shortTitle: "Games",
             items:[
-                {text: "Gen 2", href: "#", type: "text"},
-                {text: "Crystal", href: "#", type: "link"},
-                {text: "Gold/Silver", href: "#", type: "link"},
-                {text: "Gen 1", href: "#", type: "text"},
-                {text: "Yellow", href: "#", type: "link"},
-                {text: "Red/Blue", href: "#", type: "link"}
+                {text: "Gen 2", href: "", type: "text"},
+                {text: "Crystal", href: "/game/crystal", type: "link"},
+                {text: "Gold/Silver", href: "/game/gold-silver", type: "link"},
+                {text: "Gen 1", href: "", type: "text"},
+                {text: "Yellow", href: "/game/yellow", type: "link"},
+                {text: "Red/Blue", href: "/game/red-blue", type: "link"}
             ]
         },
         {
-            image: {}, //todo: add the image here too
+            image: {}, //todo: add the image here
             title: "Community",
             shortTitle: "Community",
             items:[
@@ -89,9 +87,9 @@ export default function NavBar() {
             title: "Other",
             shortTitle: "Other",
             items:[
-                {text: "Pokemon News", href: "#", type: "link"},
-                {text: "Maps/Puzzles", href: "#", type: "link"},
-                {text: "About/Contact Us", href: "#", type: "link"}
+                {text: "Pokemon News", href: "/news", type: "link"},
+                {text: "Maps/Puzzles", href: "/maps", type: "link"},
+                {text: "About/Contact Us", href: "/about", type: "link"}
             ]
         }
     ]
@@ -100,7 +98,7 @@ export default function NavBar() {
         <Navbar expand={false}>
             <Nav id={"navbar"}>
                 {menuItems.map((menu,index)=>(
-                    <Container key={index}>
+                    <Container key={index} classname="ligma">
                         <img src={Object.values(menu.image)[0]} className="dropMenuIcon" alt="icon"/>
                         <NavDropdown key={index} title={handleTitle(menu.title, menu.shortTitle)} className={"hoverDropdown"} renderMenuOnMount={true}>
                             {menu.items.map((item,idx)=>(
@@ -111,7 +109,8 @@ export default function NavBar() {
                         </NavDropdown>
                     </Container>
                 ))}
-                <div id="#searchbar">search</div>
+                <div id="searchbar"><input type="text" placeholder="Search" name="search" className="searchField"/></div>
+
             </Nav>
         </Navbar>
     )

@@ -1,0 +1,52 @@
+.mainTitle{
+  text-align: center;
+  padding-top: 12px;
+  font-size: 240%;
+}
+.main{
+  max-width: 1200px;
+  margin: 0 auto;
+  height: fit-content;
+  min-height: 1200px;
+}
+
+.shortDescription{
+  font-size: 120%;
+  color:#333;
+}
+
+.longDescTitle{
+  font-size: 170%;
+  margin-left: 15px;
+}
+
+.descriptionPage{
+  display: flex;
+}
+
+.sidenav{
+  margin: 15px;
+}
+
+.descriptionDiv{
+  background-color: #eeeeee;
+  margin: 0 25px 0 15px;
+  padding: 5px 15px;
+}
+
+.longDescriptionContainer{
+  text-align: left;
+  width: 70%;
+  font-size: 110%;
+}
+
+.longDescription{
+  margin-right: 30px;
+  margin-left: 15px;
+}
+
+a{
+  text-decoration: none;
+  color: #2768bd;
+  font-size: 110%;
+}
