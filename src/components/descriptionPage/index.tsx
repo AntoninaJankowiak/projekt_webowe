@@ -6,8 +6,8 @@ interface pageItems{
     mainTitle: string,
     shortDescription: string,
     sidenav: NavItems,
-    longDescriptionTitle: string,
-    longDescription: string[]
+    longDescriptionTitle?: string,
+    longDescription?: string[]
 }
 
 
@@ -19,7 +19,8 @@ export default function DescriptionPage({mainTitle, shortDescription, longDescri
                 <p className={"shortDescription"}>{shortDescription}</p>
             </div>
             <Container classname="descriptionPage">
-                <SideNav navItems={sidenav}/>
+                {sidenav && <SideNav navItems={sidenav}/>}
+                {longDescription && longDescriptionTitle && (
                 <Container classname={"longDescriptionContainer"}>
                     <h2 className={"longDescTitle"}>{longDescriptionTitle}</h2>
                     <div className={"longDescription"}>
@@ -28,7 +29,7 @@ export default function DescriptionPage({mainTitle, shortDescription, longDescri
                         ))}
                     </div>
                 </Container>
-
+                    )}
             </Container>
         </Container>
 

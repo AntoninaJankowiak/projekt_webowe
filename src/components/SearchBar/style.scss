@@ -1,0 +1,22 @@
+#searchbar{
+  border-radius: 5%;
+  color: #a6a6a6;
+  display: flex;
+  align-items: center;
+}
+
+.searchField{
+  background-color: #727272;
+  color: #AAA;
+  height: 30px;
+  border-radius: 5px;
+}
+.searchField::placeholder{
+  color: #AAA;
+}
+
+#searchbar img{
+  width: 20px;
+  display: inline-block;
+  margin-left: -30px;
+}

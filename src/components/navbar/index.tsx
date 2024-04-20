@@ -4,8 +4,10 @@ import {Navbar, Nav, NavDropdown} from "react-bootstrap"
 import icon_pokeball from "../../assets/icon_pokeball.png"
 import icon_gear from "../../assets/icon_gear.png"
 import icon_games from "../../assets/icon_games.png"
-//Todo: find and import forum and other icons
+import icon_other from "../../assets/icon_other.png"
+import icon_community from "../../assets/icon_community.png"
 import Container from "../Container";
+import SearchBar from "../SearchBar"
 
 export default function NavBar() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -22,7 +24,7 @@ export default function NavBar() {
     }, [])
 
     const handleTitle = (title,shortTitle) =>{
-        return windowWidth < 920 ? shortTitle : title
+        return windowWidth < 960 ? shortTitle : title
     }
 
     const menuItems = [
@@ -73,23 +75,17 @@ export default function NavBar() {
             ]
         },
         {
-            image: {}, //todo: add the image here
-            title: "Community",
-            shortTitle: "Community",
-            items:[
-                {text: "Pokemon Q&A", href: "#", type: "link"},
-                {text: "Pokemon Rate My Team", href: "#", type: "link"},
-                {text: "Meta(Suggestions)", href: "#", type: "link"}
-            ]
-        },
-        {
-            image: {}, //todo: add the image here also
+            image: {icon_other},
             title: "Other",
             shortTitle: "Other",
             items:[
                 {text: "Pokemon News", href: "/news", type: "link"},
                 {text: "Maps/Puzzles", href: "/maps", type: "link"},
-                {text: "About/Contact Us", href: "/about", type: "link"}
+                {text: "About/Contact Us", href: "/about", type: "link"},
+                {text: "Community", href: '', type: 'text'},
+                {text: "Pokemon Q&A", href: "#", type: "link"},
+                {text: "Pokemon Rate My Team", href: "#", type: "link"},
+                {text: "Meta(Suggestions)", href: "#", type: "link"}
             ]
         }
     ]
@@ -109,8 +105,7 @@ export default function NavBar() {
                         </NavDropdown>
                     </Container>
                 ))}
-                <div id="searchbar"><input type="text" placeholder="Search" name="search" className="searchField"/></div>
-
+                <SearchBar/>
             </Nav>
         </Navbar>
     )

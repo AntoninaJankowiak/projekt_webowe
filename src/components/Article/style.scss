@@ -1,0 +1,55 @@
+.outerNewsCon{
+  margin: 5px 0 5px 22px;
+  width: 100%;
+}
+.midNewsCon{
+  display: flex;
+  width: 100%;
+}
+
+.newsSidePanel{
+  width: 30%;
+}
+
+.newsSidePanel h2{
+  font-size: 200%;
+}
+
+.newsList{
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.newsListDesc{
+  color: #777;
+}
+
+.innerNewsCon{
+  width: 70%;
+}
+
+
+.newsTitle{
+  font-size: 300%;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.newsDate{
+  color:#777;
+  font-size: 120%;
+}
+
+.introP{
+  font-size: 120%;
+}
+
+.mainP{
+  font-size: 120%;
+}
+
+@media (max-width: 700px){
+  .midNewsCon{
+    display: block;
+  }
+}
