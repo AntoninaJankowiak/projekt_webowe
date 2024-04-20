@@ -1,0 +1,193 @@
+html, body {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+body{
+  min-width: 100%;
+  background-color: #727272;
+  background-image: repeating-linear-gradient(45deg, #6a6a6a 0, #6a6a6a 2px, #727272 2px, #727272 11px);
+  background-size: 16px 16px;
+}
+
+//mniejszy navbar w ktorym są dropdown menu
+#navbar{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: #3B3B3B;
+  height: 50px;
+  max-height: 400px;
+  width: 85%;
+  min-width: fit-content;
+  max-width: 1200px;
+  margin: auto;
+  border-radius: 8px;
+  font-weight: bolder;
+}
+
+#navbar:first-child{
+  padding-left: 20px;
+}
+#navbar:last-child{
+  padding-right: 15px;
+}
+
+
+//tutaj pelno do rozwijalnych menu*******************************************************************
+//musi byc
+.hoverDropdown:hover .dropdown-menu {
+  display: block;
+}
+
+//szerokosc elementow dropdown menu chyba jednak nie
+.hoverDropdown{
+  margin-top:25px;
+  height: 100%;
+  width: 100%;
+  //min-width: 160px; //to mi psuło kod
+}
+
+.hoverDropdown *{
+  min-width: 170px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+//kolor tekstu linków + usuniecie podkreslenia
+//nie zmieniac a na classe
+.hoverDropdown a{
+  text-decoration: none;
+  color: #eee;
+}
+
+//padding do dołu szarego paska nav, display none tych elementow
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  padding-bottom: 20px;
+  margin-left:-31px; //ikonka ma 25px+6px
+}
+
+//a-> .link, li-> .text
+.dropdown-menu .link, .text {
+  display: flex;
+  width: 100px;
+  padding-left: 5px;
+  padding-right: 15px;
+  color: #bbb;
+}
+
+//kolor i wieksza czcionka linkow
+.dropdown-menu .link{
+  text-decoration: none;
+  background-color: #202020;
+  font-size: 110%;
+}
+
+//inny kolor i mniejsza czcionka normalnego tekstu
+.dropdown-menu .text{
+  font-size: 90%;
+  background-color: #3D3D3D;
+  text-transform: capitalize;
+  cursor: default;
+}
+
+//obojetnie ktory element jest pierwszy to ma dodatkowy padding
+.dropdown-menu > :first-child{
+  padding-top: 4px;
+}
+//-||- ostatni --||-
+.dropdown-menu > :last-child{
+  padding-bottom: 4px;
+}
+
+//zmiana koloru tła przy najechaniu ale tylko na linki
+.dropdown-menu .link:hover {
+  background-color: #404040;
+}
+
+.dropdown-menu {
+  flex-direction: column;
+}
+
+.dropMenuIcon{
+  min-width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  margin-left: 2px;
+}
+
+//TODO: zmienić ligma na coś sensownego
+#navbar > .ligma{
+  display: flex;
+  height: 40px;
+  align-items: center;
+  //width: auto;
+  width: 20%;
+  min-width: fit-content;
+}
+
+#navbar > .ligma:hover{
+  background-color: #555;
+  height: 40px;
+}
+
+#searchbar{
+  //background-color: greenyellow; //just for testing lol
+}
+
+@media(min-width: 961px){
+  .searchField{
+    max-width: 150px;
+  }
+}
+//********************************************koniec rozwijalnych menu*****************************
+
+//TODO: stylowanie mobilne inne do 900 px i 620px
+@media (max-width: 700px){
+  .dropdown-menu .link, .dropdown-menu .text{
+    width: 100%;
+  }
+  .navbar{
+    width: 100vw;
+  }
+  #navbar{
+    width: 100%;
+    font-weight: normal;
+    border-radius: 0;
+  }
+  #navbar .ligma{
+    flex-direction: column;
+  }
+  .hoverDropdown{
+    margin: 0;
+  }
+  #navbar .ligma img, .dropdown-toggle{
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  #navbar{
+    flex-wrap: wrap;
+    height: 130px;
+  }
+  #navbar .ligma{
+    width: 25%;
+  }
+  #searchbar, .searchField{
+    width: 90%;
+  }
+  .dropdown-menu{
+    width: 100vw;
+    position: absolute;
+    left: 32px;
+  }
+
+}
+
+@media (max-width: 500px) {
+  #navbar{
+    font-weight: bolder;
+  }
+}

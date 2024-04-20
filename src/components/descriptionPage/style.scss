@@ -1,0 +1,68 @@
+.mainTitle{
+  text-align: center;
+  padding-top: 25px;
+  font-size: 250%;
+}
+.main{
+  max-width: 1200px;
+  margin: 0 auto;
+  height: fit-content;
+  min-height: 1200px;
+}
+.mainDescriptionPage{
+  height: fit-content;
+  min-height: 600px;
+  max-width: 95%;
+  width: fit-content;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+
+.shortDescription{
+  font-size: 120%;
+  color:#333;
+}
+
+.longDescTitle{
+  font-size: 170%;
+  margin-left: 15px;
+}
+
+.descriptionPage{
+  display: flex;
+}
+
+.sidenav{
+  margin: 15px 15px 0 0 ;
+}
+
+.descriptionDiv{
+  background-color: #ececec;
+  //margin: 0 25px 0 15px;
+  margin: 0;
+  padding: 5px 15px;
+}
+
+.longDescriptionContainer{
+  text-align: left;
+  width: 70%;
+  font-size: 110%;
+}
+
+.longDescription{
+  margin-right: 30px;
+  margin-left: 15px;
+}
+
+a{
+  text-decoration: none;
+  color: #2768bd;
+  font-size: 110%;
+}
+
+@media (max-width: 900px) {
+  .mainTitle{
+    font-size: 200%;
+  }
+}
