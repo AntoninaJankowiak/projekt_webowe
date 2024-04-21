@@ -81,7 +81,7 @@ body{
 //kolor i wieksza czcionka linkow
 .dropdown-menu .link{
   text-decoration: none;
-  background-color: #202020;
+  background-color: #222;
   font-size: 110%;
 }
 
@@ -145,7 +145,7 @@ body{
 //********************************************koniec rozwijalnych menu*****************************
 
 //TODO: stylowanie mobilne inne do 900 px i 620px
-@media (max-width: 700px){
+@media (max-width: 600px){
   .dropdown-menu .link, .dropdown-menu .text{
     width: 100%;
   }
@@ -162,6 +162,7 @@ body{
   }
   .hoverDropdown{
     margin: 0;
+    text-align: center;
   }
   #navbar .ligma img, .dropdown-toggle{
     text-align: center;
@@ -171,6 +172,7 @@ body{
   #navbar{
     flex-wrap: wrap;
     height: 130px;
+    width: fit-content;
   }
   #navbar .ligma{
     width: 25%;
@@ -179,12 +181,28 @@ body{
     width: 90%;
   }
   .dropdown-menu{
-    width: 100vw;
+    width: calc(100vw - 20px);
     position: absolute;
     left: 32px;
   }
+  .dropdown-toggle{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 90%;
+  }
 
 }
+
+@media (max-width: 300px) {
+  .dropMenuIcon{
+    transform: scale(0.65);
+    transform-origin: 0 0;
+  }
+  .dropdown-toggle{
+    font-size: 70%;
+  }
+}
+
 
 @media (max-width: 500px) {
   #navbar{

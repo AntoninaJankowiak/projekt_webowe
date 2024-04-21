@@ -15,10 +15,10 @@ const newsItems:NewsNav={
     ]
 
 
-
 }
 
-export default function Article({listItems,date,introPg,mainPg, newsTitle, newsCategory }: {listItems: ListItems, date:string, introPg: string, mainPg: string, newsTitle: string, newsCategory: string }){
+export default function Article({listItems,date,introPg,mainPg, newsTitle, newsCategory, videoLink }: {listItems: ListItems, date:string, introPg: string, mainPg: string, newsTitle: string, newsCategory: string, videoLink?: string }){
+
 
     return (
         <Container classname={"outerNewsCon"}>
@@ -27,7 +27,7 @@ export default function Article({listItems,date,introPg,mainPg, newsTitle, newsC
             <Container classname={"midNewsCon"}>
             <Container classname={"innerNewsCon"}>
                 <p className={"introP"}>{introPg}</p>
-                <Video videoId={"edBYB1VCV0k"}/>
+                <Video videoId={videoLink ? new URL(videoLink).searchParams.get('v') : 'dQw4w9WgXcQ'}/>
                 <p className={"mainP"}>{mainPg}</p>
                 <List listItems={listItems}></List>
             </Container>

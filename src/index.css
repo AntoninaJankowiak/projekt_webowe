@@ -24,4 +24,7 @@ body {
   html ::-webkit-scrollbar {
     display: none;
   }
+  body{
+    overflow: visible;
+  }
 }

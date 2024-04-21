@@ -7,6 +7,13 @@ iframe{
 @media (max-width: 900px){
   iframe{
     width: 350px;
-    height: 350/16*9px
+    height: 197px;
+  }
+}
+
+@media (max-width: 400px){
+  iframe{
+    width: 200px;
+    height: 113px;
   }
 }

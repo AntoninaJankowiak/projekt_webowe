@@ -18,3 +18,12 @@ footer{
   color:#eee;
   align-self: center;
 }
+
+@media (max-width: 400px){
+  .copyrightFooter, .privacyLink{
+    font-size: 70%;
+  }
+  footer{
+    height: auto;
+  }
+}

@@ -25,8 +25,7 @@ export default function Home (){
            <Header></Header>
            <NavBar></NavBar>
            <Container classname={"main"}>
-
-               <Article listItems={list} date={'2005-04-03'} introPg={"Yeahh pope died"} mainPg={"because of this event we:"} newsTitle={"Polish pope died of yellowness"} newsCategory={"Pokemon Scarlet and Violet"}/>
+               <Article listItems={list} date={'2005-04-03'} introPg={"Yeahh pope died"} mainPg={"because of this event we:"} newsTitle={"Polish pope died of yellowness"} newsCategory={"Pokemon Scarlet and Violet"} videoLink={"https://www.youtube.com/watch?v=oV3ACc9DnJ0"}/>
            </Container>
            <Footer/>
        </Container>
