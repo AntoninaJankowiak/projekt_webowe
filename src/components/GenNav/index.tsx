@@ -2,7 +2,7 @@ import React from "react"
 import './style.scss'
 import Container from "../Container"
 
-export default function GenNav({urlBase}, {urlBase:string}){
+export default function GenNav({urlBase}:{urlBase:string}){
     return(
         <Container classname={"genNavDiv"}>
             <p>Jump to</p>

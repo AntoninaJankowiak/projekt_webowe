@@ -24,7 +24,7 @@ export function isTypeValid(type){
     return pokemonTypesColors.some(pokemonType => pokemonType.type === type);
 }
 
-export default function PokeTypeA({type},{type:string}){
+export default function PokeTypeA({type}:{type:string}){
     if(!isTypeValid(type))
         return (<a className={"pokeType"} style={{backgroundColor: "black"}} href={""}>Error</a>)
 
