@@ -1,5 +1,7 @@
 import  React  from 'react'
 import './style.css'
+import Container from "../Container"
+import {Capitalize} from "../PokedexPoke"
 
 export interface TableItems{
     columns: {
@@ -32,4 +34,30 @@ export default function SortableTable({items}:{items: TableItems}){
     )
 }
 
-//todo: make sortable if i have time left
+export function TableSearch(){
+    return(
+        <Container classname={"searchTable"}>
+            <label htmlFor="searchTableInput">Filter: </label>
+            <input type="text" id="searchTableInput"/>
+        </Container>
+    )
+}
+
+export function TableFilterBy({filterColumn, filterItems}:{filterColumn: string, filterItems: string[]}){
+    return(
+        <Container classname={"filterTable"}>
+           <label htmlFor="tableFilter">{filterColumn}: </label>
+              <select id="tableFilter">
+                <option value="all">- All - </option>
+                {filterItems.map((item, index) => (
+                     <option key={index} value={item.toLowerCase()}>{Capitalize(item)}</option>
+                ))}
+                </select>
+        </Container>
+    )
+}
+
+
+
+//<label htmlFor="filterCategory">{filterColumn}: </label>
+//todo: make sortable only if i have time left

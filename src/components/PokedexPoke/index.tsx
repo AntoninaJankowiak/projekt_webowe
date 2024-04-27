@@ -26,7 +26,6 @@ export function PokeInfoCardSh({img1,imgSh, pokeId, name, type1, type2}:{img1:st
         </Container>
     )
 }
-//todo: hover image src should turn to imgSh
 
 export default function PokeInfoCard({img, pokeId, name, type1, type2}:{img:string, pokeId:number, name:string, type1:string, type2?:string}) {
     return (
