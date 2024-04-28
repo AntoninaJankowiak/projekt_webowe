@@ -1,7 +1,7 @@
 import React from "react"
 export const pokemonTypesColors = [
     { type: "Normal", color: "#787864" },
-    { type: "Fire", color: "#d21e0f" },
+    { type: "Fire", color: "#fb412b" },
     { type: "Water", color: "#0083f8" },
     { type: "Electric", color: "#ca9625" },
     { type: "Grass", color: "#5eb543" },
@@ -9,7 +9,7 @@ export const pokemonTypesColors = [
     { type: "Fighting", color: "#a64b3f" },
     { type: "Poison", color: "#864477" },
     { type: "Ground", color: "#be9735" },
-    { type: "Flying", color: "#5374f8" },
+    { type: "Flying", color: "#869bf9" },
     { type: "Psychic", color: "#fb2378" },
     { type: "Bug", color: "#4f7309" },
     { type: "Rock", color: "#9d8b3f" },

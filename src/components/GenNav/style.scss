@@ -1,8 +1,35 @@
 .nav2Div{
   width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav2Item{
-  font-weight: bold;
+  border-right: 1px solid #d9d9d9;
+  padding: 0 1rem;
 }
+.genNavList :last-child{
+  border-right: none;
+  padding-right: 0;
+}
+
+.nav2Title{
+  font-weight: bold;
+  border-right: none;
+}
+
 //ready ?
+//nope
+.genNavList{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  list-style:none;
+  text-align:center;
+  background-color: #e1f3fb;
+  border-radius: 5px;
+  height: fit-content;
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+}

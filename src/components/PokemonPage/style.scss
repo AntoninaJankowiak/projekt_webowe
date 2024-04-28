@@ -1,0 +1,56 @@
+.grey{
+  color: #7c7c7c;
+}
+.black{
+  color: #1a1a1a;
+}
+
+.dexLinks{
+  display: flex;
+  justify-content: space-between;
+  font-size: 90%;
+  margin-bottom: 20px;
+}
+
+.pokePageHeader{
+  text-align: center;
+  font-size:220%;
+  padding-top: 25px;
+}
+
+.mainData{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mainData *{
+  margin: 0 10px;
+}
+
+.bigImg{
+  max-width: 350px;
+  color: hotpink;
+}
+
+.attackTable tr td{
+  display:table-cell;
+  min-width: 35px;
+  height: 35px;
+  max-width: 35px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.attackTable td{
+  border: 1px solid white;
+}
+
+.attackTable{
+  max-width: 540px;
+  border-collapse: collapse;
+}
+.defense{
+  overflow-x: auto;
+}
+//todo: fix this shit, second table, change class names etc.
