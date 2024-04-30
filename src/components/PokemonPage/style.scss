@@ -142,6 +142,8 @@ h2{
 .spritesTable{
   border-collapse: collapse;
   text-align: center;
+  width: 90%;
+  margin-right: 20px;
 }
 
 .spritesTable th{
@@ -168,9 +170,11 @@ h2{
   margin: 0 auto;
 }
 
-.spriteWrapper{
-  overflow-x: visible;
+.spritesTableWrapper{
+  width: 100%;
+  overflow: auto;
 }
+
 
 
 .game_red{

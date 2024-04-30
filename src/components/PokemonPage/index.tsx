@@ -234,6 +234,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
             </Container> {/*todo*/}
             <Container classname={"spriteWrapper"}>
                 <h1 className={"catTitle"}>{pokeData.name} sprites</h1>
+                <div className={"spritesTableWrapper"}>
                 <table className={"spritesTable"}>
                     <thead><tr><th>Type</th>
                         {Array.from({length: 10 - startGen}, (_, i) => startGen + i).map(gen => (
@@ -260,6 +261,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                                 </td>
                             )
                         })}</tr></tbody></table>
+                </div>
             </Container>
             <Container classname={"locations"}>
                 <h1>Where to find {pokeData.name}</h1>
@@ -274,12 +276,10 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
 
 //todo: add 1/4 and 1/2 instead of 0.5 and 0.25
 
-{//in return:
-//✔️ means it's done, copilot don't suggest it if it's not done ok? ok
-//pokemon name title ✔️
+{//pokemon name title ✔️
 //next/previous poke links ✔️
 //universal nav from gen nav ✔️
-//description (don't have it yet) ✔️
+//description (don't have it yet) ✔
 //big image ✔️
 //pokedex data h2: national n, type, species, height, weight, abilities (not yet), local n ✔️
 //training h2: don't have this data yet but catch rate friendship, growth rate ✔️
@@ -291,21 +291,12 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
 //sprites h2 and table with both normal and shiny ✔️
 //next/previous at the bottom ✔️
 }
-//TODO: rest of this page, important!
+/*TODO: rest of this page: locations, evolutions script, moves, scrobbler for poke yellow locations, description in db
+   locations how to: data normally, game and location array, and when array is same as next game then copy it into new array as "game<br>game" copy rest of data normally
+   evolutions: make express script, pulls data from db and puts it into interface with all evolutions data, and this is passed here, e.g chain for squirtle and blastoise looks the same
+   description: add it to normal pokemon table in db, it's on page description
+   moves: i have no f idea, but they have game families(not gens!), types(tm/hm/lvl) and only then a table, a lot of nesting, maybe better to pass tm and hm in separate fields???
+   add tm hm to db if there's time, especially hm
+ */
 //moves learn by *pokemon* h2, universal nav for generations, choice for game in game, datatable with lvl move type category power accuracy, maybe tm and hm tables in future
 //where to find *pokemon*, location linkS for each game or "trade/migrate" or "evolve"
-
-
-
-/*
-{pokeData.locations.reduce((accumulated, current, index, array) => {
-                    return index > 0 && JSON.stringify(array[index - 1].location) === JSON.stringify(current.location)
-                        ? [...accumulated, { ...accumulated[accumulated.length - 1], rowSpan: accumulated[accumulated.length - 1].rowSpan + 1 }]
-                        : [...accumulated, { ...current, rowSpan: 1 }]
-                }, []).map((location, index) => (
-                    <tr key={index}>
-                        <td rowSpan={location.rowSpan}><p style={{color: location.game.toLowerCase()}}>{location.game}</p></td>
-                        <td rowSpan={location.rowSpan}>{location.location.locationName}</td>
-                    </tr>
-                ))}
-*/
