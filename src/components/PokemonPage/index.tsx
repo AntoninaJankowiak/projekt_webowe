@@ -27,7 +27,7 @@ export interface PokeData{
         AtMulti:number, //multiplayer against THE pokemon
         DefMulti: number //multiplayer of pokemon against the enemy
     }[]
-    evolutions?:{
+    evolutions?:{  //will be changed
         id: number,
         name: string,
         method: React.ReactNode, //level etc. (react node because it can contain <a>
@@ -37,15 +37,15 @@ export interface PokeData{
     }[]
     entries:{
         entry: string,
-        game: string
+        games: string[]
     }[],
     moveset?:{
         gameFamily:{
-            name: string,
+            name: string, //(game family name)
             type:{
                 typeName: string // lv./tm/hm change to enum
                 moves:{
-                    number: number, //if hm or tm then pad, so it's 01 etc.
+                    number: number, //if hm or tm then pad, so it's 01 etc. (pad as in pad start with zeroes)
                     moveName: string,
                     type: string,
                     category: string, //special/status/physical
@@ -54,7 +54,6 @@ export interface PokeData{
                 } //moves
             } //type
         }[] //gameFamily
-
     }[], //moveset
     sprites:{
         gen: number,
@@ -92,8 +91,14 @@ const navElements=[
 export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
     const previous=(pokeData.previousPoke.id).toString().padStart(3, "0")
     const next=(pokeData.nextPoke.id).toString().padStart(3, "0")
+    const dexLinks=<div className={"dexLinks"}>
+        {pokeData.previousPoke ? <a href={`pokedex/${pokeData.previousPoke.name}`}>	&#9666;	#{previous} {pokeData.previousPoke.name}</a> : ""}
+        {pokeData.nextPoke ? <a href={`pokedex/${pokeData.nextPoke.name}`}>#{next} {pokeData.nextPoke.name}	&#9656;</a> : ""}
+    </div>
+
     const heightFreedom: string=Math.floor(pokeData.heightM*3.28084)+"'"+Math.round((pokeData.heightM*3.28084 - Math.floor(pokeData.heightM*3.28084))*12)+'"'
     const weightFreedom: string=(pokeData.weightKg*2.20462).toString()
+
     let evQt=0
     if(pokeData.evolutions)
         evQt=pokeData.evolutions.length
@@ -102,12 +107,8 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
 
     const thisPokeInfo=<PokeInfoCard pokeId={pokeData.pokemonId} img={pokeData.bigImage} name={pokeData.name} type1={pokeData.type1} type2={pokeData.type2 ? pokeData.type2 : undefined}/>
 
-    const dexLinks=<div className={"dexLinks"}>
-        {pokeData.previousPoke ? <a href={`pokedex/${pokeData.previousPoke.name}`}>	&#9666;	#{previous} {pokeData.previousPoke.name}</a> : ""}
-        {pokeData.nextPoke ? <a href={`pokedex/${pokeData.nextPoke.name}`}>#{next} {pokeData.nextPoke.name}	&#9656;</a> : ""}
-    </div>
-
     const startGen=pokeData.sprites[0].gen
+
     const genName=(gen:number)=>{ //doesn't fit for locations, moves, and pokedex entries
         if(gen===1) return "Red and Blue"
         if(gen===2) return "Gold and Silver"
@@ -127,9 +128,11 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
             <UniversalNav urlBase={`pokedex/${pokeData.name}`} elements={navElements}/>
             <p>{pokeData.description}</p>
             <Container classname={"mainData"} id={"dex-basics"}>
-                <img src={pokeData.bigImage} alt={pokeData.name+"artwork"} className={"bigImg"}/>
-                <Container classname={"dexData"}>
-                    <h1>Pokedex data</h1>
+                <div className={"bigImgWrapper mainDataC"}>
+                    <img src={pokeData.bigImage} alt={pokeData.name+"artwork"} className={"bigImg"}/>
+                </div>
+                <Container classname={"dexData mainDataC"}>
+                    <h1 className={"catTitle"}>Pokedex data</h1>
                     <table className={"dexDataTable"}><tbody>
                         <tr><td>National Number</td><td>{pokeData.pokemonId.toString().padStart(3, "0")}</td></tr>
                         <tr><td>Type</td><td><PokeTypeD type={pokeData.type1}/>{pokeData.type2 ? <PokeTypeD type={pokeData.type2}/> : ""}</td></tr>
@@ -139,18 +142,22 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                         <tr><td>Local Number</td>
                             <td>{pokeData.localId.map(localId =>(
                                     <><span className={"black"}>{localId.id.toString().padStart(3, "0")}</span>
-                                    <span className={"grey"}>{(localId.pokedexId==1 ? "(Red/Blue/Yellow)" : localId.pokedexId==2? " (Gold/Silver/Crystal)": "")}</span>
+                                    <span className={"grey"}>{(localId.pokedexId==1 ? " (Red/Blue/Yellow)" : localId.pokedexId==2? "  (Gold/Silver/Crystal)": "")}</span>
                                     <br/></>
                                  ))}</td></tr></tbody></table>
                 </Container> {/*dexData*/}
-                <Container classname={"breeding"}>
-                    <h1>Breeding & Training</h1>
+                <Container classname={"breeding mainDataC"}>
+                    <h1 className={"catTitle"}>Breeding & Training</h1>
                     <table className={"dexDataTable"}><tbody>
                     <tr><td>Base Friendship</td><td>{pokeData.baseFriendship}</td></tr>
+                    <tr>
+                        <td>Catch Rate</td>
+                        <td>Coming soon</td>
+                    </tr>
                     <tr><td>Gender</td>
                         <td>
                         {pokeData.maleRatio+pokeData.femaleRatio==100 ?
-                            <><span style={{color:"blue"}}>{pokeData.maleRatio+"% male"}</span><span style={{color:"hotpink"}}>{pokeData.femaleRatio+"% female"}</span></>
+                            <><span style={{color:"blue"}}>{pokeData.maleRatio+"% male"}</span>, <span style={{color:"hotpink"}}>{pokeData.femaleRatio+"% female"}</span></>
                             : "Genderless"}</td>
                     </tr>
                     <tr>
@@ -167,27 +174,27 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
             <Container classname={"typeEff"}>
                 <div className={"defense"}>
                     <h2>Type defenses</h2>
-                    <p>The effectiveness of each type on {pokeData.name}</p>
-                    <table className={"attackTable"}><tbody>
+                    <p className={"desc"}>The effectiveness of each type on {pokeData.name}, 2 and especially 4 means the enemy will defeat {pokeData.name} easily</p>
+                    <table className={"typeEffTable"}><tbody>
                         <tr><PokeTypeDAll/></tr>
-                        <tr className={"typeEfAttack"}>
+                        <tr>
                             {pokeData.typeEffectiveness.map(typeEffectiveness => (
                                     <td className={typeEffectiveness.AtMulti==0?"noEf":typeEffectiveness.AtMulti==0.25?"quarterEf":typeEffectiveness.AtMulti==0.5?"halfEf":typeEffectiveness.AtMulti==1?"normalEf":typeEffectiveness.AtMulti==2?"doubleEf":typeEffectiveness.AtMulti==4?"quadrupleEf":""}
-                                    >{typeEffectiveness.AtMulti}</td>
+                                    >{typeEffectiveness.AtMulti == 0.5? "½" : typeEffectiveness.AtMulti==0.25? "¼" : typeEffectiveness.AtMulti}</td>
                             ))}</tr></tbody>
                     </table>
                 </div>
                 <div className={"offense"}>
                     <h2>Type Attacks</h2>
-                    <p>The effectiveness of {pokeData.name} on each type</p>
+                    <p className={"desc"}>The effectiveness of {pokeData.name} on each type</p>
 
-                    <table>
+                    <table className={"typeEffTable"}>
                         <thead><tr><PokeTypeDAll/></tr></thead>
                         <tbody>
                         <tr>
                             {pokeData.typeEffectiveness.map(typeEffectiveness => (
                                 <td className={typeEffectiveness.DefMulti==0?"noEf":typeEffectiveness.DefMulti==0.25?"quarterEf":typeEffectiveness.DefMulti==0.5?"halfEf":typeEffectiveness.DefMulti==1?"normalEf":typeEffectiveness.DefMulti==2?"doubleEf":typeEffectiveness.DefMulti==4?"quadrupleEf":""}
-                                >{typeEffectiveness.DefMulti}</td>
+                                >{typeEffectiveness.DefMulti == 0.5? "½" : typeEffectiveness.DefMulti==0.25? "¼" : typeEffectiveness.DefMulti}</td>
                             ))}</tr></tbody>
                     </table>
                 </div> {/*offense */}
@@ -203,34 +210,34 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                    </>
                 ))}
             </Container>
-            : ""} {/*fix this so this is full chain not only next one*/}
-            {/*from here*/}
+            : ""} {/*todo: fix this so this is full chain not only next one, make a script (express) for it and pass the ready data*/}
             <Container classname={"pokedexEntries"} id={"dex-entries"}>
                 <h1>Pokedex Entries</h1>
                 <h2>{pokeData.name}</h2>
-                <table><tbody>
-                {pokeData.entries.reduce((accumulated, current, index, array) => {
-                    return index > 0 && array[index - 1].entry === current.entry
-                        ? [...accumulated, { ...accumulated[accumulated.length - 1], rowSpan: accumulated[accumulated.length - 1].rowSpan + 1 }]
-                        : [...accumulated, { ...current, rowSpan: 1 }]
-                },
-                []).map((entry, index) => (
+                <table className={"entriesTable"}><tbody>
+                {pokeData.entries.map((entry, index) => (
                     <tr key={index}>
-                        <td><p style={{color: entry.game.toLowerCase()}}>{entry.game}</p></td>
-                        <td rowSpan={entry.rowSpan}>{entry.entry}</td>
+                        <td>
+                            {entry.games[0].split(', ').map((game, gameIndex) => ([
+                                <span key={gameIndex} className={"game_"+game.toLowerCase()}>{game}</span>,
+                                <br/>
+                            ]))}
+                        </td>
+                        <td>{entry.entry}</td>
                     </tr>
                 ))}
+
                 </tbody></table>
             </Container> {/*entries*/}
-            {/*to here*/}
             <Container classname={"movesWrapper"}>
                 {/*moves will be here, a lot of work*/}
             </Container> {/*todo*/}
             <Container classname={"spriteWrapper"}>
-                <table>
+                <h1 className={"catTitle"}>{pokeData.name} sprites</h1>
+                <table className={"spritesTable"}>
                     <thead><tr><th>Type</th>
-                        {pokeData.sprites.map((sprite, index) => (
-                            <th key={index}>Gen {sprite.gen}</th>
+                        {Array.from({length: 10 - startGen}, (_, i) => startGen + i).map(gen => (
+                            <th key={gen}>Generation {gen}</th>
                         ))}
                     </tr></thead>
                     <tbody>
@@ -255,7 +262,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                         })}</tr></tbody></table>
             </Container>
             <Container classname={"locations"}>
-                <h1>Where to find{pokeData.name}</h1>
+                <h1>Where to find {pokeData.name}</h1>
                 <table><tbody>
 
                 </tbody></table>

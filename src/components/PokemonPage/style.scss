@@ -1,8 +1,10 @@
 .grey{
   color: #7c7c7c;
+  margin: 0 !important;
 }
 .black{
   color: #1a1a1a;
+  margin: 0 !important;
 }
 
 .dexLinks{
@@ -23,16 +25,66 @@
   flex-wrap: wrap;
 }
 
-.mainData *{
+.mainDataC{
   margin: 0 10px;
+}
+
+.bigImgWrapper, .dexData, .breeding{
+  margin: 0 10px;
+}
+@media (min-width: 1145px) {
+  .mainDataC{
+    width: auto;
+  }
+
+}
+
+
+
+@media (max-width: 1145px){
+  .dexData{
+    width: 50%;
+  }
+  .bigImgWrapper{
+    margin-bottom: 10px;
+  }
+}
+.catTitle{ //cat like category not animal
+  margin-bottom:20px;
+}
+
+.dexDataTable{
+  border-collapse: collapse;
+  width: 100%;
+}
+.dexDataTable td{
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  //border: 1px solid #b2b2b2; //for testing only todo: remove this line
+}
+
+.dexDataTable td:nth-child(1){
+  text-align: right;
+  color: dimgrey;
+}
+.dexDataTable td:nth-child(2){
+  //may be useful later idk
+}
+
+.dexDataTable tr td{
+  padding: 6px 15px 6px 12px;
+  //top right bottom left
+}
+
+.pokeTypeDiv{
+  margin-left:0 !important;
 }
 
 .bigImg{
   max-width: 350px;
-  color: hotpink;
 }
-
-.attackTable tr td{
+//todo: make effectivenes table have scroll bar on narrow screens
+.typeEffTable tr td{
   display:table-cell;
   min-width: 35px;
   height: 35px;
@@ -42,15 +94,100 @@
   margin: 0;
 }
 
-.attackTable td{
-  border: 1px solid white;
+.typeEffTable td{
+  border: 1px solid #dedede;
+  border-spacing: 0;
 }
 
-.attackTable{
+.typeEffTable{
   max-width: 540px;
   border-collapse: collapse;
 }
-.defense{
-  overflow-x: auto;
+
+.desc{
+  font-size: 110%;
 }
-//todo: fix this shit, second table, change class names etc.
+
+h1{
+  font-size: 210%;
+}
+
+h2{
+  font-size: 170%;
+}
+
+.entriesTable{
+  border-collapse: collapse;
+  margin-left: 30px;
+}
+.entriesTable td{
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  //border: 1px solid black; //for testing only todo: remove this line x2
+}
+.entriesTable td:nth-child(1){ //first column
+  text-align: right;
+  color: dimgrey;
+  font-size: 90%;
+}
+.entriesTable td:nth-child(2){ //second column
+  font-size: 110%;
+}
+
+.entriesTable tr td{ //all columns
+  padding: 6px 15px 6px 5px;
+  //top right bottom left
+}
+
+.spritesTable{
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.spritesTable th{
+  font-weight: normal;
+  font-size: 90%;
+  background-color: #e9e9e3;
+  height: 40px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.spritesTable td{
+  border: 1px solid black;
+  width: 140px;
+  min-width: 100px;
+  height: 160px;
+  padding: 5px;
+}
+
+.spritesTable td img{
+  width: 70%;
+  image-rendering: pixelated;
+  display: flex;
+  margin: 0 auto;
+}
+
+.spriteWrapper{
+  overflow-x: visible;
+}
+
+
+.game_red{
+  color: #d52921;
+}
+.game_blue{
+  color: #305cc2;
+}
+.game_yellow{
+  color: #cea51d;
+}
+.game_gold{
+  color: #af974d
+}
+.game_silver{
+  color: #9d9da9;
+}
+.game_crystal{
+  color: #9fcbcb;
+}
