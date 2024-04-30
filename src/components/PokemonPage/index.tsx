@@ -274,8 +274,6 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
     )
 }
 
-//todo: add 1/4 and 1/2 instead of 0.5 and 0.25
-
 {//pokemon name title ✔️
 //next/previous poke links ✔️
 //universal nav from gen nav ✔️

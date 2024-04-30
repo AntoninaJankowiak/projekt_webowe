@@ -3,6 +3,7 @@ import PokeTypeD from "../PokeTypeD"
 
 /*todo: use pokeTypeD for putting the type divs in first column and  first row (idk how for now)
    pass quantity as argument, and loop only to this -1 through the pokemonTypesColors
+   this will be complicated
 * */
 export default function TypeChartTable(){
     return (

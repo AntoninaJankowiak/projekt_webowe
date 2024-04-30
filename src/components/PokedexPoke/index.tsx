@@ -38,5 +38,4 @@ export default function PokeInfoCard({img, pokeId, name, type1, type2}:{img:stri
      </Container>
     )
 }
-//todo: fix this <a className={"pokeListPageLink"} href={"/pokedex/"+fixNamesFromDb(name)}> {name}</a>
 //TODO: these are only pokemon, make another component for pokedex list page
