@@ -7,11 +7,18 @@
   margin: 0 !important;
 }
 
+.pokemonPage{
+  padding-bottom: 10px;
+}
+
 .dexLinks{
   display: flex;
   justify-content: space-between;
   font-size: 90%;
   margin-bottom: 20px;
+}
+.nav2Div{
+  margin: auto;
 }
 
 .pokePageHeader{
@@ -20,7 +27,7 @@
   padding-top: 25px;
 }
 
-.mainData{
+#dex-basics{
   display: flex;
   flex-wrap: wrap;
 }
@@ -116,7 +123,7 @@ h2{
   font-size: 170%;
 }
 
-.entriesTable{
+.entriesTable, .locTable{
   border-collapse: collapse;
   margin-left: 30px;
 }
@@ -134,10 +141,29 @@ h2{
   font-size: 110%;
 }
 
-.entriesTable tr td{ //all columns
+.entriesTable tr td, .locTable tr td{ //all columns
   padding: 6px 15px 6px 5px;
   //top right bottom left
 }
+
+.locTable{
+  border-collapse: collapse;
+  width: 80%;
+  margin-bottom: 20px;
+}
+.locTable td{
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+.locTable td:nth-child(1){
+  text-align: right;
+}
+.locTable td:nth-child(2){
+  font-size: 90%;
+}
+
+
+
 
 .spritesTable{
   border-collapse: collapse;

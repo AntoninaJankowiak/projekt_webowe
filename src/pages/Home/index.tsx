@@ -41,8 +41,8 @@ const Charizard: PokeData = {
     description: <p>A fiery-winged Pokémon that can fly through the sky at Mach speeds.</p>,
     bigImage: "https://img.pokemondb.net/artwork/large/charizard.jpg",
     localId: [
-        { pokedexId: 1, id: 6 },
-        { pokedexId: 2, id: 26 }
+        {pokedexId: 1, id: 6},
+        {pokedexId: 2, id: 26 }
     ],
     type1: "Fire",
     type2: "Flying",
@@ -53,39 +53,43 @@ const Charizard: PokeData = {
     femaleRatio: 12.5,
     baseFriendship: 70,
     typeEffectiveness: [
-        { typeAttacking: "Normal", AtMulti: 2, DefMulti: 2 },
-        { typeAttacking: "Fire", AtMulti: 0.5, DefMulti: 0.5 },
-        { typeAttacking: "Water", AtMulti: 0.5, DefMulti: 2 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 4, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 0.25, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 2, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 4, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 0.5, DefMulti: 1 },
-        { typeAttacking: "Sample", AtMulti: 4, DefMulti: 1 },
+        {typeAttacking: "Normal", AtMulti: 2, DefMulti: 2},
+        {typeAttacking: "Fire", AtMulti: 0.5, DefMulti: 0.5},
+        {typeAttacking: "Water", AtMulti: 0.5, DefMulti: 2},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 4, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 0.25, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 2, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 4, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 0.5, DefMulti: 1},
+        {typeAttacking: "Sample", AtMulti: 4, DefMulti: 1},
     ],
     entries: [
-        { entry: "Spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally.", games: ["Red, Blue"] },
-        { entry: "Its wings can carry this Pokémon close to an altitude of 4,600 feet. It blows out fire at very high temperatures.", games: ["Yellow"] }
+        {entry: "Spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally.", games: ["Red, Blue"]},
+        {entry: "Its wings can carry this Pokémon close to an altitude of 4,600 feet. It blows out fire at very high temperatures.", games: ["Yellow"] }
     ],
     sprites: [
-        { gen: 1, normal: "https://img.pokemondb.net/sprites/red-blue/normal/charizard.png"}
+        {gen: 1, normal: "https://img.pokemondb.net/sprites/red-blue/normal/charizard.png"}
     ],
-    locations: {
-        games: ["Red"],
+    locations: [
+        {games: ["Red, Blue"],
         location: [
-            { region: "Kanto", locationName: "Route 3" },
-            { region: "Kanto", locationName: "Cerulean Cave" }
-        ]
-    },
+            {region: "Kanto", locationName: "Route 3"},
+            {region: "Kanto", locationName: "Cerulean Cave"}
+        ]},
+        {games: ["Yellow"],
+        location: [
+            {locationName: "T"}
+        ]}
+    ],
     previousPoke: {
         id: 5,
         name: "Charmeleon"

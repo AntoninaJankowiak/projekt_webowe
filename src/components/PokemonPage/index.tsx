@@ -4,6 +4,11 @@ import Container from "../Container"
 import {UniversalNav} from "../GenNav"
 import PokeInfoCard from "../PokedexPoke" //will be used soon
 import PokeTypeD, {PokeTypeDAll} from "../PokeTypeD"
+
+export interface EvolutionChain {
+
+}
+
 export interface PokeData{
     pokemonId: number,
     name: string,
@@ -34,7 +39,8 @@ export interface PokeData{
         type1: string,
         type2?: string,
         img: string
-    }[]
+    }[],
+    evolutionChain?: EvolutionChain //remove the above when this is done
     entries:{
         entry: string,
         games: string[]
@@ -63,10 +69,10 @@ export interface PokeData{
     locations:{
         games: string[],
         location:{
-            region: string, //so link is e.g "kanto-route-6", if null then trade/evolve
+            region?: string, //so link is e.g "kanto-route-6", if null then trade/evolve
             locationName: string //+ trade/evolve
         }[],
-    },
+    }[],
     previousPoke:{
         id: number,
         name: string,
@@ -121,13 +127,15 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
         if(gen===9) return "Scarlet and Violet"
     }
 
+    function spaceToDash(text:string){return text.toLowerCase().replace(" ", "-")}
+
     return (
         <Container classname={"pokemonPage"}>
             <h1 className={"pokePageHeader"}>{pokeData.name}</h1>
             {dexLinks}
-            <UniversalNav urlBase={`pokedex/${pokeData.name}`} elements={navElements}/>
+            <UniversalNav urlBase={"/"} elements={navElements}/>
             <p>{pokeData.description}</p>
-            <Container classname={"mainData"} id={"dex-basics"}>
+            <div classname={"mainData"} id={"dex-basics"}>
                 <div className={"bigImgWrapper mainDataC"}>
                     <img src={pokeData.bigImage} alt={pokeData.name+"artwork"} className={"bigImg"}/>
                 </div>
@@ -170,7 +178,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                     </tr>
                     </tbody></table>
                 </Container> {/*breeding and training*/}
-            </Container> {/*mainData*/}
+            </div> {/*mainData*/}
             <Container classname={"typeEff"}>
                 <div className={"defense"}>
                     <h2>Type defenses</h2>
@@ -210,7 +218,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                    </>
                 ))}
             </Container>
-            : ""} {/*todo: fix this so this is full chain not only next one, make a script (express) for it and pass the ready data*/}
+            : ""} {/*todo: fix this so this is full chain not only next one, make a script (express) for it and pass the ready data, make this ready for different data*/}
             <Container classname={"pokedexEntries"} id={"dex-entries"}>
                 <h1>Pokedex Entries</h1>
                 <h2>{pokeData.name}</h2>
@@ -229,10 +237,10 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
 
                 </tbody></table>
             </Container> {/*entries*/}
-            <Container classname={"movesWrapper"}>
+            <Container classname={"movesWrapper"} id={"dex-moves"}>
                 {/*moves will be here, a lot of work*/}
             </Container> {/*todo*/}
-            <Container classname={"spriteWrapper"}>
+            <Container classname={"spriteWrapper"} id={"dex-sprites"}>
                 <h1 className={"catTitle"}>{pokeData.name} sprites</h1>
                 <div className={"spritesTableWrapper"}>
                 <table className={"spritesTable"}>
@@ -263,9 +271,26 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                         })}</tr></tbody></table>
                 </div>
             </Container>
-            <Container classname={"locations"}>
+            <Container classname={"locations"} id={"dex-locations"}>
                 <h1>Where to find {pokeData.name}</h1>
-                <table><tbody>
+                <table className={"locTable"}><tbody>
+                {pokeData.locations.map((location, index) => (
+                    <tr key={index}> {/*game list column*/}
+                        <td>
+                            {location.games[0].split(',').map((game, gameIndex) => ([
+                                <span key={gameIndex} className={("game_"+game.toLowerCase()).replace(' ','')}>{game}</span>,
+                                <br/>
+                            ]))}
+                        </td>
+                        <td>
+                            {location.location.map((loc, locIndex) => (
+                                loc.region ?
+                                    <a key={locIndex} href={"locations/"+loc.region.toLowerCase()+"-"+ spaceToDash(loc.locationName)}>{loc.locationName} </a>
+                                    : <span key={locIndex}>{loc.locationName=="T" ? "Trade/migrate from another game": loc.locationName=="E"? "Obtainable only through evolution": loc.locationName=="U"? "Unobtainable in this game": "No data yet"}</span>
+                            ))}
+                        </td>
+                    </tr>
+                ))}
 
                 </tbody></table>
             </Container> {/*todo*/}
@@ -289,7 +314,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
 //sprites h2 and table with both normal and shiny ✔️
 //next/previous at the bottom ✔️
 }
-/*TODO: rest of this page: locations, evolutions script, moves, scrobbler for poke yellow locations, description in db
+/*TODO: rest of this page: evolutions script, *moves*, scrobbler for poke yellow locations, description in db
    locations how to: data normally, game and location array, and when array is same as next game then copy it into new array as "game<br>game" copy rest of data normally
    evolutions: make express script, pulls data from db and puts it into interface with all evolutions data, and this is passed here, e.g chain for squirtle and blastoise looks the same
    description: add it to normal pokemon table in db, it's on page description
