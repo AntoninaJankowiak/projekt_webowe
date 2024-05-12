@@ -6,7 +6,15 @@ import PokeInfoCard from "../PokedexPoke" //will be used soon
 import PokeTypeD, {PokeTypeDAll} from "../PokeTypeD"
 
 export interface EvolutionChain {
-
+    evolutions:{
+        id: number,
+        name: string,
+        method: React.ReactNode, //level etc. (react node because it can contain <a>
+        type1: string,
+        type2?: string,
+        img: string
+        evolvesTo: EvolutionChain[]
+    }[],
 }
 
 export interface PokeData{
@@ -32,33 +40,22 @@ export interface PokeData{
         AtMulti:number, //multiplayer of how strong is THE pokemon against the enemy
         DefMulti: number //multiplayer of how strong enemy is against THE pokemon
     }[]
-    evolutions?:{  //will be changed
-        id: number,
-        name: string,
-        method: React.ReactNode, //level etc. (react node because it can contain <a>
-        type1: string,
-        type2?: string,
-        img: string
-    }[],
-    evolutionChain?: EvolutionChain //remove the above when this is done
+    evolutionChain?: EvolutionChain //remove the above *evolutions* when this is done
     entries:{
         entry: string,
         games: string[]
     }[],
     moveset?:{
-        gameFamily:{
+        gameFamily:{ //in db: "description"
             name: string, //(game family name)
-            type:{
-                typeName: string // lv./tm/hm change to enum
                 moves:{
-                    number: number, //if hm or tm then pad, so it's 01 etc. (pad as in pad start with zeroes)
-                    moveName: string,
-                    type: string,
-                    category: string, //special/status/physical
-                    power: number,
-                    accuracy: number
+                number: number, //if hm or tm then pad, so it's 01 etc. (pad as in pad start with zeroes)
+                moveName: string,
+                type: string,
+                category: string, //special/status/physical
+                power: number,
+                accuracy: number
                 } //moves
-            } //type
         }[] //gameFamily
     }[], //moveset
     sprites:{
