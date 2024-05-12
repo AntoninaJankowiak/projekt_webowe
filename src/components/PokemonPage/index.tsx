@@ -12,7 +12,7 @@ export interface EvolutionChain {
 export interface PokeData{
     pokemonId: number,
     name: string,
-    description: React.ReactNode, //TODO: not in database gotta fix this asap
+    description: React.ReactNode,
     bigImage: string,
     localId:{
         pokedexId: number,
@@ -27,10 +27,10 @@ export interface PokeData{
     femaleRatio: number,
     baseFriendship: number,
     special?: string, //legendary/mythical...
-    typeEffectiveness:{ //only data for newest gen
+    typeEffectiveness:{ //only data for newest genc
         typeAttacking:string,
-        AtMulti:number, //multiplayer against THE pokemon
-        DefMulti: number //multiplayer of pokemon against the enemy
+        AtMulti:number, //multiplayer of how strong is THE pokemon against the enemy
+        DefMulti: number //multiplayer of how strong enemy is against THE pokemon
     }[]
     evolutions?:{  //will be changed
         id: number,
