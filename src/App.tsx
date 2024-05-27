@@ -7,6 +7,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import React from "react";
 import Pokedex from "./pages/Pokedex"
+import axios from 'axios'
+
+const apiCall = () => {
+    axios.get('http://localhost:5000').then((data) => {
+        console.log(data)
+    })
+}
 
 const routes = [
     { path: '/', element: <Home /> },

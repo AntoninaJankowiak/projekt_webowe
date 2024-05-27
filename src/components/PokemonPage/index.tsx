@@ -1,5 +1,6 @@
 import React from "react"
 import './style.scss'
+import axios from 'axios'
 import Container from "../Container"
 import {UniversalNav} from "../GenNav"
 import PokeInfoCard from "../PokedexPoke" //will be used soon
