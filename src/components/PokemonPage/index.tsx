@@ -37,14 +37,14 @@ interface PokeData{
     baseFriendship: number,
     special?: string, //legendary/mythical...
     typeEffectiveness:{ //only data for newest genc
-        typeAttacking:string,
+        typeEnemy:string, //todo: find out why i wanted it to be string not number
         AtMulti:number, //multiplayer of how strong is THE pokemon against the enemy
         DefMulti: number //multiplayer of how strong enemy is against THE pokemon
     }[]
     evolutionChain?: EvolutionChain //remove the above *evolutions* when this is done
     entries:{
         entry: string,
-        games: string[]
+        games: string
     }[],
     moveset?:{
         gameFamily:{ //in db: "description"
@@ -219,8 +219,8 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                 <table className={"entriesTable"}><tbody>
                 {pokeData.entries.map((entry, index) => (
                     <tr key={index}>
-                        <td>
-                            {entry.games[0].split(', ').map((game, gameIndex) => ([
+                        <td> <!--todo: entry.games isn't supposed to be array -->
+                            {entry.games.split(', ').map((game, gameIndex) => ([
                                 <span key={gameIndex} className={"game_"+game.toLowerCase()}>{game}</span>,
                                 <br/>
                             ]))}

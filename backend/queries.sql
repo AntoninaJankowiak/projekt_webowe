@@ -19,8 +19,7 @@ WITH RECURSIVE evolution_chain(pokemonId, pokemon, sprite, evolvesTo, evolvesToN
                        CASE WHEN female_only IS NOT NULL THEN 'female only: ' || female_only || ' and ' ELSE '' END ||
                        CASE WHEN highFriendship IS NOT NULL THEN 'High Friendship' || ' and ' ELSE '' END ||
                        CASE WHEN magneticfield IS NOT NULL THEN 'magnetic field: ' || magneticfield ELSE '' END
-               , ' and')
-                                                                                                           AS evolutionMethods,
+               , ' and') AS evolutionMethods,
            CASE WHEN e.generation IS NULL THEN '' ELSE e.generation END,
            CASE WHEN (SELECT s.sprite FROM pokemon_sprite s WHERE s.generation IS NULL AND s.pokemon_id=e.evolvesTo) IS NULL THEN 'no image available' ELSE (SELECT s.sprite FROM pokemon_sprite s WHERE s.generation IS NULL AND s.pokemon_id=e.evolvesTo) END
     FROM pokemon_evolving e

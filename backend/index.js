@@ -5,7 +5,6 @@ import cors from 'cors'
 app.use(cors())
 const port = 5000
 import sqlite3 from "sqlite3"
-//import PokeData from "../src/components/PokemonPage/index.js"
 const db = new sqlite3.Database('../database/pokemon')
 
 let evolutionChain = {
@@ -38,7 +37,7 @@ let pokeData = {
     baseFriendship: null,
     special: null,
     typeEffectiveness: [{
-        typeAttacking: null,
+        typeEnemy: null,
         AtMulti: null,
         DefMulti: null
     }],
@@ -99,7 +98,7 @@ app.get('/pokemon/:name', (req, res) => {
         //console.log(pokemonId)
 
         db.get(queries.query_getBasicPokemonData(pokemonId),  (err, rows) => {
-            res.send(pokemonId.toString()+' '+rows.species.toString())
+            //res.send(pokemonId.toString()+' '+rows.species.toString())
             pokeData.description=rows.description
             pokeData.species=rows.species
             pokeData.heightM=rows.height
@@ -116,22 +115,82 @@ app.get('/pokemon/:name', (req, res) => {
 
                 db.all(queries.query_getInGamePokemonIds(pokemonId), (err, rows)=>{
                     rows.forEach(function (row){
-                        console.log(row.localPokedexNumber, row.description)
                         pokeData.localId.push({
                             pokedex: row.description,
                             id: row.localPokedexNumber
                         })
                         pokeData.localId = pokeData.localId.filter(item => item.pokedex !== null && item.id !== null)
                     })
-                    console.log(pokeData)
+
+                    //console.log(pokeData)
+                    db.all(queries.query_getTypeDefenses(pokemonId, (pokeData.type2? 2: 1)),(err,rows)=>{
+                        rows.forEach(function (row){
+                            pokeData.typeEffectiveness.push({
+                                typeEnemy: row.attack_type,
+                                DefMulti: row.multi,
+                                AtMulti: null
+                            })
+                        })
+                        pokeData.typeEffectiveness = pokeData.typeEffectiveness.filter(i => i.typeEnemy&&i.DefMulti)
+                        db.all(queries.query_getTypeAttacks(pokemonId, (pokeData.type2? 2: 1)),(err,rows)=> {
+                            rows.forEach(function (row) {
+                                let index = row.defense_type - 1
+                                pokeData.typeEffectiveness[index].AtMulti = row.multi //TODO: CHECK IF WORKS FOR 2 TYPE POKEMON
+                            })
+                            db.all(queries.query_getPokedexEntries(pokemonId),(err,rows)=>{
+                                rows.forEach(function(row){
+                                    pokeData.entries.push({
+                                        entry: row.entry,
+                                        games: row.game
+                                    })
+                                })
+                                //todo: merge same ones
+
+                                for(let i=1; i<pokeData.entries.length; i++){
+                                    if(pokeData.entries[i-1]){
+                                        if (pokeData.entries[i].entry===pokeData.entries[i-1].entry){
+                                            pokeData.entries[i-1].games+=', '+ pokeData.entries[i].games
+                                            pokeData.entries.splice(i,1)
+                                        }
+                                    }
+                                }
+                                pokeData.entries = pokeData.entries.filter(i => i.entry&&i.games)
+                                db.all(queries.query_getPreviousAndNextPokemon(pokemonId), (err,rows)=>{
+                                    console.log(rows[0])
+                                    if(rows[0].type==="prev"){
+                                        pokeData.previousPoke.id=rows[0].global_id
+                                        pokeData.previousPoke.name=rows[0].name
+                                    }
+                                    else{
+                                        pokeData.nextPoke.id=rows[0].global_id
+                                        pokeData.nextPoke.name=rows[0].name
+                                    }
+                                    if(rows[1].type){ //zabezpieczenia przed ostatnim i pierwszym pokemonem, chyba działa
+                                        pokeData.nextPoke.id=rows[1].global_id
+                                        pokeData.nextPoke.name=rows[1].name
+                                    }
+
+                                    db.all(queries.query_getSpritesForEachGen(pokemonId), (err, rows)=>{
+                                        rows.forEach(function (row){
+                                            pokeData.sprites.push({
+                                                gen: row.generation,
+                                                normal: row.sprite,
+                                                shiny: row.sprite_shiny?row.sprite_shiny:null
+                                            })
+                                        })
+                                        pokeData.sprites = pokeData.sprites.filter(i => i.gen&&i.normal)
+                                        //todo: locations optional: moveset, evolution chain
+                                        //res.json(pokeData)
+                                        console.log(pokeData)
+                                    })
+                                })
+                            })
+                        })
+                    })
                 })
             })
-
         })
     })
-
-
-
 })
 
 app.get('/api', (req, res) => {

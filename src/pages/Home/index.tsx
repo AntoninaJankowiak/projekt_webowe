@@ -73,8 +73,8 @@ const Charizard: PokeData = {
         {typeAttacking: "Sample", AtMulti: 4, DefMulti: 1},
     ],
     entries: [
-        {entry: "Spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally.", games: ["Red, Blue"]},
-        {entry: "Its wings can carry this Pokémon close to an altitude of 4,600 feet. It blows out fire at very high temperatures.", games: ["Yellow"] }
+        {entry: "Spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally.", games: "Red, Blue"},
+        {entry: "Its wings can carry this Pokémon close to an altitude of 4,600 feet. It blows out fire at very high temperatures.", games:"Yellow" }
     ],
     sprites: [
         {gen: 1, normal: "https://img.pokemondb.net/sprites/red-blue/normal/charizard.png"}
