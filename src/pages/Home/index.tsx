@@ -41,8 +41,8 @@ const Charizard: PokeData = {
     description: <p>A fiery-winged Pokémon that can fly through the sky at Mach speeds.</p>,
     bigImage: "https://img.pokemondb.net/artwork/large/charizard.jpg",
     localId: [
-        {pokedexId: 1, id: 6},
-        {pokedexId: 2, id: 26 }
+        {pokedex: "red/blue/yellow", id: 6},
+        {pokedex: "gold/silver/crystal", id: 26 }
     ],
     type1: "Fire",
     type2: "Flying",

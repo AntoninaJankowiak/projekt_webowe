@@ -18,13 +18,13 @@ export interface EvolutionChain {
     }[],
 }
 
-export interface PokeData{
+interface PokeData{
     pokemonId: number,
     name: string,
     description: React.ReactNode,
     bigImage: string,
     localId:{
-        pokedexId: number,
+        pokedex: string,
         id: number
     }[],
     type1: string,
@@ -104,8 +104,8 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
     const weightFreedom: string=(pokeData.weightKg*2.20462).toString()
 
     let evQt=0
-    if(pokeData.evolutions)
-        evQt=pokeData.evolutions.length
+    if(pokeData.evolutionChain)
+        evQt=1 //todo: make this functional
 
     const arrowNormalRight=<svg width="107px" height="107px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#545454" strokeWidth="0.00024000000000000003" transform="rotate(0)"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M23.0681 11.9928L18.8183 7.75732L17.4065 9.17392L19.2419 11.0031L0.932836 11.0011L0.932617 13.0011L19.2373 13.0031L17.4158 14.8308L18.8324 16.2426L23.0681 11.9928Z" fill="#545454"></path> </g></svg>
 
@@ -148,7 +148,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                         <tr><td>Local Number</td>
                             <td>{pokeData.localId.map(localId =>(
                                     <><span className={"black"}>{localId.id.toString().padStart(3, "0")}</span>
-                                    <span className={"grey"}>{(localId.pokedexId==1 ? " (Red/Blue/Yellow)" : localId.pokedexId==2? "  (Gold/Silver/Crystal)": "")}</span>
+                                    <span className={"grey"}>{(localId.pokedex)}</span>
                                     <br/></>
                                  ))}</td></tr></tbody></table>
                 </Container> {/*dexData*/}
@@ -208,13 +208,9 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
             {evQt>0 ?
             <Container classname={"evolutionChart"} id={"dex-evolution"}>
                 <h2>Evolution Chart</h2>
-                {pokeData.evolutions?.map(evolution => (
-                    <>
-                        {thisPokeInfo}
-                        <div> {arrowNormalRight }<br/> {evolution.method}</div>
-                        <PokeInfoCard pokeId={evolution.id} name={evolution.name} type1={evolution.type1} img={evolution.img} type2={evolution.type2 ? evolution.type2 : undefined}/>
-                   </>
-                ))}
+
+
+
             </Container>
             : ""} {/*todo: fix this so this is full chain not only next one, make a script (express) for it and pass the ready data, make this ready for different data*/}
             <Container classname={"pokedexEntries"} id={"dex-entries"}>
@@ -321,3 +317,11 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
  */
 //moves learn by *pokemon* h2, universal nav for generations, choice for game in game, datatable with lvl move type category power accuracy, maybe tm and hm tables in future
 //where to find *pokemon*, location linkS for each game or "trade/migrate" or "evolve"
+
+//{pokeData.evolutions?.map(evolution => (
+//                     <>
+//                         {thisPokeInfo}
+//                         <div> {arrowNormalRight }<br/> {evolution.method}</div>
+//                         <PokeInfoCard pokeId={evolution.id} name={evolution.name} type1={evolution.type1} img={evolution.img} type2={evolution.type2 ? evolution.type2 : undefined}/>
+//                    </>
+//                 ))}
