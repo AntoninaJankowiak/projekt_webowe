@@ -65,8 +65,10 @@
   width: 100%;
 }
 .dexDataTable td{
-  border-bottom: 1px solid #ddd;
-  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd !important;
+  border-top: 1px solid #ddd !important;
+  border-right: none !important;
+  border-left: none !important;
   //border: 1px solid #b2b2b2; //for testing only todo: remove this line
 }
 

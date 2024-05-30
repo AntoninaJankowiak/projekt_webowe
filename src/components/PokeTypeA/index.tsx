@@ -1,8 +1,9 @@
 import React from "react"
+import './style.scss'
 export const pokemonTypesColors = [
     { type: "Normal", color: "#787864" },
     { type: "Fire", color: "#fb412b" },
-    { type: "Water", color: "#0083f8" },
+    { type: "Water", color: "#2696fc" },
     { type: "Electric", color: "#ca9625" },
     { type: "Grass", color: "#5eb543" },
     { type: "Ice", color: "#0aabf9" },

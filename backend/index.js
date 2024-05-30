@@ -65,7 +65,7 @@ let pokeData = {
         shiny: null
     }],
     locations: [{
-        games: null,
+        game: null,
         location: [{
             region: null,
             locationName: null
@@ -105,7 +105,7 @@ app.get('/pokemon/:name', (req, res) => {
             pokeData.weightKg=rows.weight
             pokeData.maleRatio=rows.maleRatio
             pokeData.femaleRatio=rows.femaleRatio
-            rows.baseFriendship? pokeData.baseFriendship=rows.baseFriendship : '' //todo: handle null base friendship
+            rows.baseFriendship? pokeData.baseFriendship=rows.baseFriendship : ''
             pokeData.species=rows.species
             pokeData.special=rows.special
             db.get(queries.query_getTypesOfPokemon(pokemonId), (err, rows)=>{
@@ -144,8 +144,6 @@ app.get('/pokemon/:name', (req, res) => {
                                         games: row.game
                                     })
                                 })
-                                //todo: merge same ones
-
                                 for(let i=1; i<pokeData.entries.length; i++){
                                     if(pokeData.entries[i-1]){
                                         if (pokeData.entries[i].entry===pokeData.entries[i-1].entry){
@@ -180,8 +178,28 @@ app.get('/pokemon/:name', (req, res) => {
                                         })
                                         pokeData.sprites = pokeData.sprites.filter(i => i.gen&&i.normal)
                                         //todo: locations optional: moveset, evolution chain
-                                        //res.json(pokeData)
-                                        console.log(pokeData)
+
+                                        db.all(queries.query_getPokemonLocations(pokemonId),(err,rows)=>{
+                                            rows.forEach(function (row){
+                                                pokeData.locations.push({
+                                                    game: row.game,
+                                                    location: [{
+                                                        region: "Kanto", //in normal version should be like if red or blue or yellow then kanto but i have only gen1
+                                                        locationName: row.location //todo: check if frontend modifies the location name correctly
+                                                    }]
+                                                })
+                                            })
+                                            for (let i = 1; i < pokeData.locations.length; i++) {
+                                                if (pokeData.locations[i - 1]) {
+                                                    if (pokeData.locations[i].game === pokeData.locations[i - 1].game) {
+                                                        pokeData.locations[i - 1].location.push(...pokeData.locations[i].location)
+                                                        pokeData.locations.splice(i, 1)
+                                                    }
+                                                }
+                                            }
+                                            res.json(pokeData)
+                                            console.log(pokeData)
+                                        })
                                     })
                                 })
                             })

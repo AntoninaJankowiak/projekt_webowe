@@ -31,8 +31,8 @@ export default function PokeInfoCard({img, pokeId, name, type1, type2}:{img:stri
     return (
      <Container classname={"pokeDataS"}>
         <img src={img} className={"pokeListPokeImg"} alt={fixNamesFromDbToUrl(name)+"sprite"}/>
-         <h6 className={"pokeListPokeId"}>#{pokeId.toString().padStart(3, '0')}</h6>
-         <a className={"pokeListPageLink"} href={"/pokedex/"+fixNamesFromDbToUrl(name)}>{name}</a>
+         <h4 className={"pokeListPokeId"}>#{pokeId.toString().padStart(3, '0')}</h4>
+         <a className={"pokeListPageLink"} href={"/pokedex/"+fixNamesFromDbToUrl(name)}>{name}</a><br/>
          <PokeTypeA type={Capitalize(type1)}/>
          {type2? " · "+<PokeTypeA type={Capitalize(type2)}/>: <></>}
      </Container>

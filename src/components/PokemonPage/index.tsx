@@ -18,7 +18,7 @@ export interface EvolutionChain {
     }[],
 }
 
-interface PokeData{
+export interface PokeData{
     pokemonId: number,
     name: string,
     description: React.ReactNode,
@@ -36,13 +36,13 @@ interface PokeData{
     femaleRatio: number,
     baseFriendship: number,
     special?: string, //legendary/mythical...
-    typeEffectiveness:{ //only data for newest genc
+    typeEffectiveness?:{ //only data for newest genc
         typeEnemy:string, //todo: find out why i wanted it to be string not number
         AtMulti:number, //multiplayer of how strong is THE pokemon against the enemy
         DefMulti: number //multiplayer of how strong enemy is against THE pokemon
     }[]
     evolutionChain?: EvolutionChain //remove the above *evolutions* when this is done
-    entries:{
+    entries?:{
         entry: string,
         games: string
     }[],
@@ -59,23 +59,23 @@ interface PokeData{
                 } //moves
         }[] //gameFamily
     }[], //moveset
-    sprites:{
+    sprites?:{
         gen: number,
         normal: string,
         shiny?: string,
     }[],
-    locations:{
-        games: string[],
+    locations?:{
+        game: string,
         location:{
             region?: string, //so link is e.g "kanto-route-6", if null then trade/evolve
             locationName: string //+ trade/evolve
         }[],
     }[],
-    previousPoke:{
+    previousPoke?:{
         id: number,
         name: string,
     },
-    nextPoke:{
+    nextPoke?:{
         id: number,
         name: string,
     }
@@ -93,6 +93,20 @@ const navElements=[
 ]
 
 export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
+    /*const [pokeData, setPokeData] = useState(null)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get(`http://localhost:5000/pokemon/${name}`)
+            setPokeData(response.data)
+        }
+
+        fetchData()
+    }, [name])
+
+    if (!pokeData) {
+        return <div>Loading...</div>
+    }*/
     const previous=(pokeData.previousPoke.id).toString().padStart(3, "0")
     const next=(pokeData.nextPoke.id).toString().padStart(3, "0")
     const dexLinks=<div className={"dexLinks"}>
@@ -219,7 +233,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                 <table className={"entriesTable"}><tbody>
                 {pokeData.entries.map((entry, index) => (
                     <tr key={index}>
-                        <td> <!--todo: entry.games isn't supposed to be array -->
+                        <td>
                             {entry.games.split(', ').map((game, gameIndex) => ([
                                 <span key={gameIndex} className={"game_"+game.toLowerCase()}>{game}</span>,
                                 <br/>
@@ -271,7 +285,7 @@ export default function PokemonPage({pokeData}:{pokeData:PokeData}) {
                 {pokeData.locations.map((location, index) => (
                     <tr key={index}> {/*game list column*/}
                         <td>
-                            {location.games[0].split(',').map((game, gameIndex) => ([
+                            {location.game.split(',').map((game, gameIndex) => ([
                                 <span key={gameIndex} className={("game_"+game.toLowerCase()).replace(' ','')}>{game}</span>,
                                 <br/>
                             ]))}

@@ -1,11 +1,11 @@
 import  React  from 'react'
-import './style.css'
+import './style.scss'
 import Container from "../Container"
 import {Capitalize} from "../PokedexPoke"
 
 export interface TableItems{
     columns: {
-        name: string,
+        cname: string,
         sortable: boolean,
         items: {
             value: React.ReactNode
@@ -18,7 +18,7 @@ export default function SortableTable({items}:{items: TableItems}){
         <table className={"tableC"}>
             <thead><tr>
                 {items.columns.map((column, index) => (
-                    <th key={index}>{column.name} </th>
+                    <th key={index}>{column.cname} </th>
                 ))}
             </tr></thead>
             <tbody>
