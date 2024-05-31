@@ -4,11 +4,12 @@ import './style.scss'
 interface ContainerProps {
   children: React.ReactNode
   classname?: string
+  htmlId?: string
 }
 
-export default function Container({ children, classname }: ContainerProps) {
+export default function Container({ children, classname, id }: ContainerProps) {
   return (
-      <div className={classname}>
+      <div className={classname} id={id}>
         {children}
       </div>
   )

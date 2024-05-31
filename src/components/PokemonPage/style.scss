@@ -1,0 +1,228 @@
+.grey{
+  color: #7c7c7c;
+  margin: 0 !important;
+}
+.black{
+  color: #1a1a1a;
+  margin: 0 !important;
+}
+
+.pokemonPage{
+  padding-bottom: 10px;
+}
+
+.dexLinks{
+  display: flex;
+  justify-content: space-between;
+  font-size: 90%;
+  margin-bottom: 20px;
+}
+.nav2Div{
+  margin: auto;
+}
+
+.pokePageHeader{
+  text-align: center;
+  font-size:220%;
+  padding-top: 25px;
+}
+
+#dex-basics{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mainDataC{
+  margin: 0 10px;
+}
+
+.bigImgWrapper, .dexData, .breeding{
+  margin: 0 10px;
+}
+@media (min-width: 1145px) {
+  .mainDataC{
+    width: auto;
+  }
+
+}
+
+
+
+@media (max-width: 1145px){
+  .dexData{
+    width: 50%;
+  }
+  .bigImgWrapper{
+    margin-bottom: 10px;
+  }
+}
+.catTitle{ //cat like category not animal
+  margin-bottom:20px;
+}
+
+.dexDataTable{
+  border-collapse: collapse;
+  width: 100%;
+}
+.dexDataTable td{
+  border-bottom: 1px solid #ddd !important;
+  border-top: 1px solid #ddd !important;
+  border-right: none !important;
+  border-left: none !important;
+  //border: 1px solid #b2b2b2; //for testing only todo: remove this line
+}
+.dexDataTable{
+  border-right: none !important;
+  border-left: none !important;
+}
+.dexDataTable td:nth-child(1){
+  text-align: right;
+  color: dimgrey;
+}
+.dexDataTable td:nth-child(2){
+  //may be useful later idk
+}
+
+.dexDataTable tr td{
+  padding: 6px 15px 6px 12px;
+  //top right bottom left
+}
+
+.pokeTypeDiv{
+  margin-left:0 !important;
+}
+
+.bigImg{
+  max-width: 350px;
+}
+//todo: make effectivenes table have scroll bar on narrow screens
+.typeEffTable tr td{
+  display:table-cell;
+  min-width: 35px;
+  height: 35px;
+  max-width: 35px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.typeEffTable td{
+  border: 1px solid #dedede;
+  border-spacing: 0;
+}
+
+.typeEffTable{
+  max-width: 540px;
+  border-collapse: collapse;
+}
+
+.desc{
+  font-size: 110%;
+}
+
+h1{
+  font-size: 210%;
+}
+
+h2{
+  font-size: 170%;
+}
+
+.entriesTable, .locTable{
+  border-collapse: collapse;
+  margin-left: 30px;
+}
+.entriesTable td{
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  //border: 1px solid black; //for testing only todo: remove this line x2
+}
+.entriesTable td:nth-child(1){ //first column
+  text-align: right;
+  color: dimgrey;
+  font-size: 90%;
+}
+.entriesTable td:nth-child(2){ //second column
+  font-size: 110%;
+}
+
+.entriesTable tr td, .locTable tr td{ //all columns
+  padding: 6px 15px 6px 5px;
+  //top right bottom left
+}
+
+.locTable{
+  border-collapse: collapse;
+  width: 80%;
+  margin-bottom: 20px;
+}
+.locTable td{
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+.locTable td:nth-child(1){
+  text-align: right;
+}
+.locTable td:nth-child(2){
+  font-size: 90%;
+}
+
+
+
+
+.spritesTable{
+  border-collapse: collapse;
+  text-align: center;
+  width: 90%;
+  margin-right: 20px;
+}
+
+.spritesTable th{
+  font-weight: normal;
+  font-size: 90%;
+  background-color: #e9e9e3;
+  height: 40px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.spritesTable td{
+  border: 1px solid black;
+  width: 140px;
+  min-width: 100px;
+  height: 160px;
+  padding: 5px;
+}
+
+.spritesTable td img{
+  width: 70%;
+  image-rendering: pixelated;
+  display: flex;
+  margin: 0 auto;
+}
+
+.spritesTableWrapper{
+  width: 100%;
+  overflow: auto;
+}
+
+
+
+.game_red{
+  color: #d52921;
+}
+.game_blue{
+  color: #305cc2;
+}
+.game_yellow{
+  color: #cea51d;
+}
+.game_gold{
+  color: #af974d
+}
+.game_silver{
+  color: #9d9da9;
+}
+.game_crystal{
+  color: #9fcbcb;
+}

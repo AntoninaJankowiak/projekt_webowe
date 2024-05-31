@@ -16,7 +16,7 @@ for (let pokemonId= 501; pokemonId <= 721; pokemonId++){
         if(err) console.error('Error querying Pokémon name:', err)
 
         let pokemonName = row['LOWER(name)']
-        pokemonName=func.fixNamesFromDb(pokemonName)
+        pokemonName=func.fixNamesFromDbToUrl(pokemonName)
 
         //const spriteGen1 = `${dir}/${pokemonName}1.png`
         //const spriteGen2 = `${dir}/${pokemonName}2.png`

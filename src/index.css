@@ -9,7 +9,7 @@ body {
   margin: 0 auto;
   height: fit-content;
   min-height: 1200px;
-  padding-left: 15px;
+  padding: 0 25px;
 }
 
 @media screen and (max-width: 700px) {

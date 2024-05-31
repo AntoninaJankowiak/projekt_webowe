@@ -1,0 +1,51 @@
+.pokeTypeDiv{
+  color: white; //some old code idk what's that
+  width: 65px;
+  line-height: 25px;
+  height: 25px;
+  border-radius: 4px;
+  text-align: center;
+  font-size:80%;
+  text-shadow: 1px 1px 1px grey;
+  display: inline-block;
+  margin-right: 4px;
+  border: 0.5px solid dimgrey;
+  padding: 0 !important;
+}
+
+.pokeTypeDivSmall{
+  display: default; //it shows error but actually fixes the issue
+  width: 30px;
+  height: 30px;
+  margin:0;
+  font-size: 70%;
+  line-height: 30px;
+}
+
+.pokeTypeDiv a{
+  text-decoration: none;
+  color: white;
+}
+
+.noEf{
+  background-color: #282c2f;
+}
+.quarterEf{
+  background-color: #600101;
+}
+.halfEf{
+  background-color: #ad0b0b;
+}
+.normalEf{
+  visibility: hidden;
+}
+.doubleEf{
+  background-color: forestgreen;
+}
+.quadrupleEf{
+  background-color: limegreen;
+}
+
+.noEf, .halfEf, .quadrupleEf, .quarterEf, .doubleEf, .normalEf{
+  color: #ffc900;
+}
