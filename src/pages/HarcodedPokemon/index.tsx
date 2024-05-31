@@ -10,7 +10,7 @@ import Article from "../../components/Article"
 import PokemonPage, {PokeData} from "../../components/PokemonPage"
 
 const shortDesc="Welcome! We believe in making Pokémon information as clear and easy to digest as possible...change this later it's stolen"
-export default function HarcodedPokemon (){
+export default function HardcodedPokemon (){
     return (
        <Container classname={"mainDiv"}>
            <Header></Header>

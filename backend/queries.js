@@ -5,7 +5,7 @@ const maxId=1010; //newest pokemon
 const outOfBoundsError=`Id too big or too small, it needs to be a number between 1 and ${maxId}`
 export function query_getIdFromName(name){
     name=fixNamesUrlToDb(name)
-    return "SELECT n.global_id  as 'pokeId' FROM pokemon_national n WHERE name=\'"+name+"\'" //webstorm shows error because of sql but it works
+    return "SELECT n.global_id as 'pokeId' FROM pokemon_national n WHERE name=\'"+name+"\'" //webstorm shows error but it works
 }
 
 export function query_getTypesOfPokemon(id){
@@ -26,12 +26,12 @@ export function query_getNumberOfTypes(id){ //todo: check if it's useless
 //te następne 2 można by połączyć, ale osobno jest wygodniej i mniejsza szansa na błędy
 export function query_getTypeDefenses(id, types){
     return types===1? `SELECT pn.name, te.attack_type, te.multi FROM pokemon_national pn JOIN pokemon_type pt ON pn.global_id=pt.pokemon JOIN type_effectivenes te ON pt.type=te.defense_type WHERE global_id=${id} AND te.gens LIKE '%9'`
-    :types===2? `WITH CTE AS (SELECT DISTINCT pn.name as 'name1', te1.attack_type as 'attack', te1.defense_type as 'defense', te2.defense_type, te1.multi*te2.multi as 'multi1', ROW_NUMBER() OVER (PARTITION BY pn.name, te1.attack_type ORDER BY te1.defense_type, te2.defense_type) as rn FROM pokemon_national pn JOIN pokemon_type pt1 ON pn.global_id=pt1.pokemon JOIN type_effectivenes te1 ON pt1.type=te1.defense_type JOIN pokemon_type pt2 ON pn.global_id=pt2.pokemon JOIN type_effectivenes te2 ON pt2.type=te2.defense_type AND te2.attack_type=te1.attack_type AND te1.defense_type!=te2.defense_type WHERE global_id=${id} AND te1.gens LIKE '%9' AND te2.gens LIKE '%9') SELECT name1, attack, multi1 FROM CTE c WHERE rn = 1 ORDER BY attack;`
+    :types===2? `WITH CTE AS (SELECT DISTINCT pn.name as 'name', te1.attack_type as 'attack_type', te1.defense_type as 'defense', te2.defense_type, te1.multi*te2.multi as 'multi', ROW_NUMBER() OVER (PARTITION BY pn.name, te1.attack_type ORDER BY te1.defense_type, te2.defense_type) as rn FROM pokemon_national pn JOIN pokemon_type pt1 ON pn.global_id=pt1.pokemon JOIN type_effectivenes te1 ON pt1.type=te1.defense_type JOIN pokemon_type pt2 ON pn.global_id=pt2.pokemon JOIN type_effectivenes te2 ON pt2.type=te2.defense_type AND te2.attack_type=te1.attack_type AND te1.defense_type!=te2.defense_type WHERE global_id=${id} AND te1.gens LIKE '%9' AND te2.gens LIKE '%9') SELECT name, attack_type, multi FROM CTE c WHERE rn = 1 ORDER BY attack_type;`
     :`Incorrect number of types, it should be 1 or 2.`
 }
 export function query_getTypeAttacks(id, types){ //todo: good idea for unit test: ALWAYS gotta be 18 rows this and typedefenses
     return types===1? `SELECT pn.name, te.defense_type, te.multi FROM pokemon_national pn JOIN pokemon_type pt ON pn.global_id=pt.pokemon JOIN type_effectivenes te ON pt.type=te.attack_type WHERE global_id=${id} AND te.gens LIKE '%9'`
-    :types===2? `WITH CTE AS (SELECT DISTINCT pn.name as 'name1', te1.defense_type as 'defense', te1.attack_type as 'attack', te2.attack_type, te1.multi*te2.multi as 'multi1', ROW_NUMBER() OVER (PARTITION BY pn.name, te1.defense_type ORDER BY te1.attack_type, te2.attack_type) as rn FROM pokemon_national pn JOIN pokemon_type pt1 ON pn.global_id=pt1.pokemon JOIN type_effectivenes te1 ON pt1.type=te1.attack_type JOIN pokemon_type pt2 ON pn.global_id=pt2.pokemon JOIN type_effectivenes te2 ON pt2.type=te2.attack_type AND te2.defense_type=te1.defense_type AND te1.attack_type!=te2.attack_type WHERE global_id=${id} AND te1.gens LIKE '%9' AND te2.gens LIKE '%9') SELECT name1, defense, multi1 FROM CTE c WHERE rn = 1 ORDER BY defense;`
+    :types===2? `WITH CTE AS (SELECT DISTINCT pn.name as 'name', te1.defense_type as 'defense_type', te1.attack_type as 'attack', te2.attack_type, te1.multi*te2.multi as 'multi', ROW_NUMBER() OVER (PARTITION BY pn.name, te1.defense_type ORDER BY te1.attack_type, te2.attack_type) as rn FROM pokemon_national pn JOIN pokemon_type pt1 ON pn.global_id=pt1.pokemon JOIN type_effectivenes te1 ON pt1.type=te1.attack_type JOIN pokemon_type pt2 ON pn.global_id=pt2.pokemon JOIN type_effectivenes te2 ON pt2.type=te2.attack_type AND te2.defense_type=te1.defense_type AND te1.attack_type!=te2.attack_type WHERE global_id=${id} AND te1.gens LIKE '%9' AND te2.gens LIKE '%9') SELECT name, defense_type, multi FROM CTE c WHERE rn = 1 ORDER BY defense_type`
     :`Incorrect number of types, it should be 1 or 2.`
 }
 export function query_getPokedexEntries(id){

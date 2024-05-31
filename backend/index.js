@@ -83,8 +83,8 @@ let pokeData = {
 }
 
 //const pokedata=require('../src/components/PokemonPage/index.tsx')
-app.get('/api/pokemon', (req, res) => {
-    res.send('Hello  world1!')
+app.get('/api/aboutus', (req, res) => {
+    res.status(200).send('lorem ipsum coś tam');
 })
 //bez api bo nie działało todo: naprawić może
 app.get('/pokemon/:name', (req, res) => {
@@ -92,11 +92,11 @@ app.get('/pokemon/:name', (req, res) => {
     pokeData.name=pokeName
     console.log("pokename:"+pokeName)
     let pokemonId = 0
-    db.get(queries.query_getIdFromName(fixNamesUrlToDb(pokeName)), (err, rows)=>{
+    console.log("running name query for "+fixNamesUrlToDb(pokeName))
+    db.get(queries.query_getIdFromName(pokeName), (err, rows)=>{
         pokemonId=rows.pokeId
         pokeData.pokemonId=pokemonId
         //console.log(pokemonId)
-
         db.get(queries.query_getBasicPokemonData(pokemonId),  (err, rows) => {
             //res.send(pokemonId.toString()+' '+rows.species.toString())
             pokeData.description=rows.description
@@ -108,10 +108,16 @@ app.get('/pokemon/:name', (req, res) => {
             rows.baseFriendship? pokeData.baseFriendship=rows.baseFriendship : ''
             pokeData.species=rows.species
             pokeData.special=rows.special
+            console.log("id is: "+pokeData.pokemonId)
+            if(pokeData.pokemonId>697)
+                console.log("pokemon is from gen 7 or newer, this won't work")
             db.get(queries.query_getTypesOfPokemon(pokemonId), (err, rows)=>{
+                if(err)
+                    return console.error(err.message)
                 pokeData.type1=rows.type1
                 if(rows.type2)
                     pokeData.type2=rows.type2
+                console.log("type 1: "+pokeData.type1+"\ntype 2: "+pokeData.type2)
 
                 db.all(queries.query_getInGamePokemonIds(pokemonId), (err, rows)=>{
                     rows.forEach(function (row){
@@ -121,9 +127,12 @@ app.get('/pokemon/:name', (req, res) => {
                         })
                         pokeData.localId = pokeData.localId.filter(item => item.pokedex !== null && item.id !== null)
                     })
-
-                    //console.log(pokeData)
+                    console.log("how many types?")
+                    console.log(pokeData.type2? 2: 1)
                     db.all(queries.query_getTypeDefenses(pokemonId, (pokeData.type2? 2: 1)),(err,rows)=>{
+                        if(err)
+                            throw err
+                        console.log("zwróciło "+rows.length+ " rekordów, powinno być 18")
                         rows.forEach(function (row){
                             pokeData.typeEffectiveness.push({
                                 typeEnemy: row.attack_type,
@@ -133,10 +142,13 @@ app.get('/pokemon/:name', (req, res) => {
                         })
                         pokeData.typeEffectiveness = pokeData.typeEffectiveness.filter(i => i.typeEnemy&&i.DefMulti)
                         db.all(queries.query_getTypeAttacks(pokemonId, (pokeData.type2? 2: 1)),(err,rows)=> {
+                            //console.log("here"+pokeData.typeEffectiveness)
+                            console.log("zwróciło "+rows.length+ " rekordów, powinno być 18 v2")
                             rows.forEach(function (row) {
                                 let index = row.defense_type - 1
                                 pokeData.typeEffectiveness[index].AtMulti = row.multi //TODO: CHECK IF WORKS FOR 2 TYPE POKEMON
                             })
+                            pokeData.typeEffectiveness = pokeData.typeEffectiveness.filter(i => i.DefMulti&&i.AtMulti)
                             db.all(queries.query_getPokedexEntries(pokemonId),(err,rows)=>{
                                 rows.forEach(function(row){
                                     pokeData.entries.push({
@@ -211,7 +223,7 @@ app.get('/pokemon/:name', (req, res) => {
 })
 
 app.get('/api', (req, res) => {
-    res.status(200).send('Hello world');
+    res.status(200).send('Tu by coś było');
 })
 
 app.listen(port, () => {
