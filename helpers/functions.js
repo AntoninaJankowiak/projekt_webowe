@@ -4,6 +4,7 @@ export function fixNamesFromDbToUrl(pokemonName){
         .replace('. ','-').replace("é","e")
         .replace(' ','-').replace('.','')
         .replace(':','')
+
     return pokemonName
 }
 export function fixNamesUrlToDb(pokemonName){
@@ -14,7 +15,7 @@ export function fixNamesUrlToDb(pokemonName){
     else if(pokemonName==="mr-rime") pokemonName="mr. Rime"
     else if(pokemonName==="mime-jr") pokemonName="mime jr."
     else if(pokemonName==="flabebe") pokemonName="flabébé"
-    else if(pokemonName==="farfetchd") pokemonName="farfetch'd"
+    else if(pokemonName==="farfetchd") pokemonName="farfetch''d"
     else if(pokemonName==='sirfetchd') pokemonName="sirfetch'd"
     else if(pokemonName==='type-null') pokemonName="type: Null"
     else if(pokemonName==='porygon-z') pokemonName="porygon-Z"

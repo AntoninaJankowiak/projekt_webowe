@@ -4,10 +4,11 @@ import React from "react";
 import Pokedex from "./pages/Pokedex"
 import axios from 'axios'
 import PokemonPage from "./components/PokemonPage"
-import HarcodedPokemon from "./pages/HarcodedPokemon"
+import HardcodedPokemon from "./pages/HarcodedPokemon"
 import HardcodedArticle from "./pages/HardocedArticle"
 import PokedexExample from "./pages/PokedexExample"
 import ExampleDataTable from "./pages/ExampleDataTable"
+import AboutUs from "./pages/AboutUs"
 
 const apiCall = () => {
     axios.get('http://localhost:5000').then((data) => {
@@ -19,10 +20,11 @@ const routes = [
     { path: '/', element: <Home /> },
     { path: '/pokedex', element: <Pokedex /> },
     //{ path: '/pokedex/:name', element: <PokemonPage/> },
-    {path: '/pokedex/pokemon', element: <HarcodedPokemon/>},
+    {path: '/pokedex/pokemon', element: <HardcodedPokemon/>},
     {path: '/articles/article', element: <HardcodedArticle/>},
     {path: '/pokedex/example', element: <PokedexExample/>},
     {path: '/table', element: <ExampleDataTable/>},
+    {path: '/about', element: <AboutUs/>}
 ]
 
 export default function App() {
