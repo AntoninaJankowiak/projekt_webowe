@@ -18,7 +18,7 @@ const apiCall = () => {
 const routes = [
     { path: '/', element: <Home /> },
     { path: '/pokedex', element: <Pokedex /> },
-    { path: '/pokedex/:name', element: <PokemonPage/> },
+    //{ path: '/pokedex/:name', element: <PokemonPage/> },
     {path: '/pokedex/pokemon', element: <HarcodedPokemon/>},
     {path: '/articles/article', element: <HardcodedArticle/>},
     {path: '/pokedex/example', element: <PokedexExample/>},

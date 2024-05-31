@@ -5,6 +5,7 @@ import cors from 'cors'
 app.use(cors())
 const port = 5000
 import sqlite3 from "sqlite3"
+import {fixNamesUrlToDb} from "../helpers/functions.js"
 const db = new sqlite3.Database('../database/pokemon')
 
 let evolutionChain = {
@@ -90,9 +91,8 @@ app.get('/pokemon/:name', (req, res) => {
     const pokeName=[req.params.name].toString()
     pokeData.name=pokeName
     console.log("pokename:"+pokeName)
-    let pokemonId= 0
-
-    db.get(queries.query_getIdFromName(pokeName), (err, rows)=>{
+    let pokemonId = 0
+    db.get(queries.query_getIdFromName(fixNamesUrlToDb(pokeName)), (err, rows)=>{
         pokemonId=rows.pokeId
         pokeData.pokemonId=pokemonId
         //console.log(pokemonId)
@@ -211,10 +211,11 @@ app.get('/pokemon/:name', (req, res) => {
 })
 
 app.get('/api', (req, res) => {
-    res.send('Hello  world!')
+    res.status(200).send('Hello world');
 })
 
 app.listen(port, () => {
     console.log(`Express server is running on port ${port}`)
 })
 
+export default app
