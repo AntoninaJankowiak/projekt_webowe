@@ -71,7 +71,10 @@
   border-left: none !important;
   //border: 1px solid #b2b2b2; //for testing only todo: remove this line
 }
-
+.dexDataTable{
+  border-right: none !important;
+  border-left: none !important;
+}
 .dexDataTable td:nth-child(1){
   text-align: right;
   color: dimgrey;

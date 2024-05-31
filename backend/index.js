@@ -89,7 +89,7 @@ app.get('/api/pokemon', (req, res) => {
 app.get('/pokemon/:name', (req, res) => {
     const pokeName=[req.params.name].toString()
     pokeData.name=pokeName
-    console.log(pokeName)
+    console.log("pokename:"+pokeName)
     let pokemonId= 0
 
     db.get(queries.query_getIdFromName(pokeName), (err, rows)=>{
@@ -169,15 +169,14 @@ app.get('/pokemon/:name', (req, res) => {
                                     }
 
                                     db.all(queries.query_getSpritesForEachGen(pokemonId), (err, rows)=>{
-                                        rows.forEach(function (row){
+                                        /*rows.forEach(function (row){
                                             pokeData.sprites.push({
                                                 gen: row.generation,
                                                 normal: row.sprite,
                                                 shiny: row.sprite_shiny?row.sprite_shiny:null
                                             })
                                         })
-                                        pokeData.sprites = pokeData.sprites.filter(i => i.gen&&i.normal)
-                                        //todo: locations optional: moveset, evolution chain
+                                        pokeData.sprites = pokeData.sprites.filter(i => i.gen&&i.normal)*/
 
                                         db.all(queries.query_getPokemonLocations(pokemonId),(err,rows)=>{
                                             rows.forEach(function (row){
